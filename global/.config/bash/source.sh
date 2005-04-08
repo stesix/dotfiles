@@ -5,6 +5,10 @@ if [ $0 == "$BASH_SOURCE" ] ; then
     exit 1
 fi
 
+if [ -z "$HOMEBREW_PREFIX" ] && [ -f /opt/homebrew/bin/brew ] ; then
+    eval "$( /opt/homebrew/bin/brew shellenv )"
+fi
+
 if [ -n "$HOMEBREW_PREFIX" ] ; then
 #    [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]] && . "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
 
