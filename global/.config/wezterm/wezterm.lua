@@ -2,8 +2,8 @@ local wezterm = require('wezterm')
 local url = require('url')
 local mwindow = require('window')
 local mappings = require('keys')
+local mouse_bindings = require('mouse_bindings')
 local session_manager = require('plugins.session-manager')
--- local resurrect = require('plugins.resurrect')
 
 local config = wezterm.config_builder()
 local is_linux = wezterm.target_triple == 'x86_64-unknown-linux-gnu'
@@ -34,7 +34,7 @@ end
 url.apply(config)
 mwindow.apply(config)
 mappings.apply(config)
--- resurrect.apply(config)
+mouse_bindings.apply(config)
 
 require('events.right-status').setup()
 require('events.left-status').setup()
