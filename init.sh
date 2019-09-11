@@ -4,7 +4,6 @@ MYPATH="$( dirname "$( realpath "$0" )" )"
 
 function createLink {
     mkdir -p $( dirname ~/$1 )
-    rm -rf 
     ln -s ${MYPATH}/$1 ~/$1
 }
 
