@@ -1,0 +1,12 @@
+#!/bin/bash
+
+rm -rf /tmp/screen_locked.*.png
+scrot /tmp/screen_locked.orig.png
+
+LINE="$(  xrandr -q | grep eDP | grep ' connected ' | grep -o '[0-9]*x[0-9]*+[0-9]*+[0-9]*' )"
+
+convert /tmp/screen_locked.orig.png -crop $LINE -scale 5% -scale 2000% /tmp/screen_locked.scrambled.png
+composite -gravity center /usr/local/share/images/tbx_lock/lock.png /tmp/screen_locked.scrambled.png /tmp/screen_locked.png
+rm -rf /tmp/screen_locked.*.png
+
+i3lock -t -i /tmp/screen_locked.png

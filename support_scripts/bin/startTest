@@ -1,0 +1,18 @@
+#!/bin/bash
+
+cd $( git root )
+
+$(aws ecr get-login --no-include-email --region eu-west-1) &> /dev/null
+
+DB_TARGET=${DB_TARGET:-$dev_ip}
+ENV=DEV
+SSH_PRIVATE_KEY_FILE=${SSH_PRIVATE_KEY_FILE:-~/.ssh/id_rsa}
+
+if [ ! -z "$1" ] && [ "$1" == 'build' ] ; then
+    docker-compose -f docker-compose.test.yml build --build-arg=SSH_PRIVATE_KEY="$(cat $SSH_PRIVATE_KEY_FILE)" 
+elif [ ! -z "$1" ] ; then
+    docker-compose -f docker-compose.test.yml $*
+else
+    docker-compose -f docker-compose.test.yml run monitor test-frontend-ci
+fi
+
