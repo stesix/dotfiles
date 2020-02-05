@@ -89,8 +89,8 @@ bindsym $superL+a focus parent
 set $ws1 "1: "
 set $ws2 "2: "
 set $ws3 "3: "
-set $ws4 "4: "
-set $ws5 "5: "
+set $ws4 "4: "
+set $ws5 "5: "
 set $ws6 "6: "
 set $ws7 "7: "
 set $ws8 "8: "
@@ -190,16 +190,28 @@ bindsym $superR+$superL+d exec --no-startup-id "$HOME/.screenlayout/ext_disabled
 bindsym Print exec scrot --focused '+%Y%m%d_%H%M%S_screenshot_window.jpg' -e 'mv $f ~/Pictures/'
 bindsym $superL+Print exec --no-startup-id gnome-screenshot -a -f ~/Pictures/$( date +'%Y%m%d_%H%M%S_screenshot_area.jpg' )
 
+# Define windows specific behaviors
+for_window [class="KeeWeb"] move to workspace $ws7
+for_window [class="VirtualBox Machine" instance="VirtualBox Machine"] move to workspace $ws6
+for_window [class="Skype"] move to workspace $ws8
+for_window [class="Signal" instance="signal" title="Signal" window_role="browser-window"] move to workspace $ws8
+for_window [class="^Microsoft Teams"] move to workspace $ws9
+for_window [class="Spotify"] move to workspace $ws10
+
+for_window [title="Microsoft Teams Notification"] floating enable
+no_focus [title="Microsoft Teams Notification"]
+
+
 # Startup
 exec_always --no-startup-id setxkbmap -layout it,de -option grp:shifts_toggle
 exec_always --no-startup-id xkbcomp -w0 -I$HOME/.xkb $HOME/.xkb/keymap/mykbd $DISPLAY
 exec_always --no-startup-id ps auxwww | grep /usr/local/bin/buildnotifyapplet.py | grep -v grep | awk '{ print $2 }' | xargs kill ; /usr/local/bin/buildnotifyapplet.py
-exec --no-startup-id teams-for-linux
-exec --no-startup-id skype
-exec --no-startup-id KeeWeb
+exec --no-startup-id teams
+#exec --no-startup-id skype
 exec --no-startup-id dropbox start
 exec --no-startup-id spotify
 exec --no-startup-id volumeicon
+exec --no-startup-id Joplin.AppImage
 exec xautolock -time 10 -locker '~/bin/desktop_lock' -notify 60 -notifier "notify-send -u critical -t 45000 -- '  screen lock in 60 seconds'"
 exec i3-sensible-terminal
 exec_always feh --bg-scale $HOME/Pictures/wallpapers/wallpaper_sloth.png
@@ -208,17 +220,14 @@ exec_always feh --bg-scale $HOME/Pictures/wallpapers/wallpaper_sloth.png
 assign [class="Gnome-terminal"] $ws1
 assign [class="Code"] $ws2
 assign [class="Firefox"] $ws3
-assign [class="Eclipse"] $ws4
+assign [class="Joplin" window_role="browser-window"] $ws4
+assign [class="Eclipse"] $ws5
+assign [class="Bitwarden" instance="bitwarden" title="Bitwarden" window_role="browser-window"] $ws7
 assign [class="KeeWeb"] $ws7
-for_window [class="KeeWeb"] move to workspace $ws7
-assign [class="VirtualBox Machine"] $ws6
+assign [class="VirtualBox Machine" instance="VirtualBox Machine"] $ws6
 assign [class="Skype"] $ws8
-for_window [class="Skype"] move to workspace $ws8
 assign [class="Signal" instance="signal" title="Signal" window_role="browser-window"] $ws8
-for_window [class="Signal" instance="signal" title="Signal" window_role="browser-window"] move to workspace $ws8
-assign [class="teams-for-linux"] $ws9
-for_window [class="teams-for-linux"] move to workspace $ws9
+assign [class="Microsoft Teams"] $ws9
 assign [class="Spotify"] $ws10
-for_window [class="Spotify"] move to workspace $ws10
 
 
