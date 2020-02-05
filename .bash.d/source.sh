@@ -15,7 +15,7 @@ function getFileList {
 
 source ${BASHED_BASE_PATH}/aliases.sh
 if [ -f ~/.secrets/init.sh ] ; then
-    source ~/.secrets/init.sh
+     source ~/.secrets/init.sh
 fi
 
 source bashlib
