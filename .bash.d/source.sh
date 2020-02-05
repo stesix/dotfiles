@@ -24,4 +24,4 @@ for file in $( getFileList ) ; do
     source $file
 done
 
-PS1="[${IRed}\!${NoColor}] ${IYellow}${USER}@${HOSTNAME}${NoColor}:${Cyan}\w ${IWhite}$ ${NoColor}"
+PS1="${IYellow}${USER}@${HOSTNAME} ${ColorOff}\`parse_git_branch\` ${Cyan}\W ${IWhite}$ ${ColorOff}"
