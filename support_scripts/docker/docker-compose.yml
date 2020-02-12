@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+  bhserver:
+    image: nicksherron/bashhub-server
+    restart: "unless-stopped"
+    ports:
+      - "4480:8080"
+    volumes:
+      - "${HOME}/.config/bashhub-server:/root/.config/bashhub-server:rw"
