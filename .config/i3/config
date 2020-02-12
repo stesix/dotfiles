@@ -199,6 +199,7 @@ for_window [class="^Microsoft Teams"] move to workspace $ws9
 for_window [class="Spotify"] move to workspace $ws10
 
 for_window [title="Microsoft Teams Notification"] floating enable
+for_window [title="Microsoft Teams Notification"] move to workspace $ws9
 no_focus [title="Microsoft Teams Notification"]
 
 
@@ -228,6 +229,7 @@ assign [class="VirtualBox Machine" instance="VirtualBox Machine"] $ws6
 assign [class="Skype"] $ws8
 assign [class="Signal" instance="signal" title="Signal" window_role="browser-window"] $ws8
 assign [class="Microsoft Teams"] $ws9
+assign [title="Microsoft Teams Notification"] $ws9
 assign [class="Spotify"] $ws10
 
 
