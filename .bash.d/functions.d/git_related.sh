@@ -4,7 +4,7 @@ function parse_git_branch {
     BRANCH=$( git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/' )
     if [ ! "${BRANCH}" == "" ] ; then
         STAT="$( parse_git_dirty )"
-        echo -e "\001${ColorOff}\002(\001${ICyan}\002${BRANCH}\001${IRed}\002${STAT}\001${ColorOff}\002)"
+        echo -e "\001${ColorOff}\002(\001${ICyan}\002${BRANCH}\001${IRed}\002${STAT}\001${ColorOff}\002) "
     fi
 }
 
