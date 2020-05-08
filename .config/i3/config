@@ -198,9 +198,11 @@ for_window [class="Signal" instance="signal" title="Signal" window_role="browser
 for_window [class="^Microsoft Teams"] move to workspace $ws9
 for_window [class="Spotify"] move to workspace $ws10
 
-for_window [title="Microsoft Teams Notification"] floating enable
 for_window [title="Microsoft Teams Notification"] move to workspace $ws9
+for_window [title="Microsoft Teams Notification"] floating enable
 no_focus [title="Microsoft Teams Notification"]
+
+for_window [class="zoom" instance="zoom" title="Settings"] floating enable
 
 
 # Startup
@@ -228,6 +230,7 @@ assign [class="KeeWeb"] $ws7
 assign [class="VirtualBox Machine" instance="VirtualBox Machine"] $ws6
 assign [class="Skype"] $ws8
 assign [class="Signal" instance="signal" title="Signal" window_role="browser-window"] $ws8
+assign [class="zoom" instance="zoom"] $ws8
 assign [class="Microsoft Teams"] $ws9
 assign [title="Microsoft Teams Notification"] $ws9
 assign [class="Spotify"] $ws10
