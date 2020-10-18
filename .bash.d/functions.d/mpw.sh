@@ -4,6 +4,8 @@ mpw() {
     _copy() {
         if hash pbcopy 2>/dev/null; then
             pbcopy
+        elif hash clip.exe 2>/dev/null; then
+            clip.exe
         elif hash xclip 2>/dev/null; then
             xclip -selection clip
         else
