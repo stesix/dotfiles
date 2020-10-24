@@ -41,6 +41,7 @@ set background=dark
 set hlsearch
 set number
 set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+set mouse-=a
 
 " *** Indent Guides
 let g:indent_guides_enable_on_vim_startup = 1
