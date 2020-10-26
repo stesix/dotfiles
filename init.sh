@@ -15,3 +15,6 @@ createLink '.xkb'
 ls ${MYPATH}/.config | while read f ; do
     createLink .config/$f
 done
+
+mkdir ~/.config/nvim/bundle
+git clone  git clone https://github.com/VundleVim/Vundle.vim.git ~/.config/nvim/bundle/Vundle.vim
