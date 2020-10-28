@@ -7,7 +7,7 @@ function __mpw_entries {
     cur="${COMP_WORDS[COMP_CWORD]}"
     COMPREPLY=( \
         $( compgen -W \
-            "$( jq '.sites | to_entries | .[] .key' $HOME/.mpw.d/"$MPW_FULLNAME"*.json | sort -u | sed 's/"//g' )" \
+            "$( jq '.sites | to_entries | .[] .key' $HOME/.mpw.d/"$MPW_FULLNAME"*.*json | sort -u | sed 's/"//g' )" \
             $cur \
         ) \
     )
