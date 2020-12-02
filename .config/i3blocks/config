@@ -127,7 +127,6 @@ interval=60
 [openvpn]
 command=/usr/local/share/i3blocks/openvpn
 interval=5
-#PID_FILE_FORMAT='/run/openvpn/trufa.pid'
 
 # Temperature
 #
