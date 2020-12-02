@@ -17,4 +17,4 @@ ls ${MYPATH}/.config | while read f ; do
 done
 
 mkdir ~/.config/nvim/bundle
-git clone  git clone https://github.com/VundleVim/Vundle.vim.git ~/.config/nvim/bundle/Vundle.vim
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.config/nvim/bundle/Vundle.vim
