@@ -1,0 +1,6 @@
+partial modifier_keys
+
+partial modifier_keys
+xkb_symbols "osx_tilde" {
+    key <AE05> { [ 5, percent, asciitilde ] };
+};
