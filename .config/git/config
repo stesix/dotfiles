@@ -9,7 +9,7 @@
 [merge]
     tool = vimdiff
 [alias]
-    # most of these are coming from brauliobo 
+    # most of these are coming from brauliobo
     root = rev-parse --show-toplevel
     co = checkout
     amend = commit --amend

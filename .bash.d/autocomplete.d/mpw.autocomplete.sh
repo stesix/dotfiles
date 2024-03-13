@@ -13,4 +13,4 @@ function __mpw_entries {
     )
 }
 
-complete -F __mpw_entries mpw
+complete -F __mpw_entries mpw spectre

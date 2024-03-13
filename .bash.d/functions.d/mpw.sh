@@ -1,12 +1,19 @@
 #!/bin/bash
 
+mpw_cmd=''
+if which mpw &>/dev/null ; then
+    mpw_cmd="$( which mpw )"
+elif which spectre &>/dev/null ; then
+    mpw_cmd="$( which spectre )"
+fi
+
 mpw() {
     # Empty the clipboard
     :| __copy 2>/dev/null
 
-    # Ask for the user's name and password if not yet known.
     MPW_FULLNAME=${MPW_FULLNAME:-$(ask 'Your Full Name:')}
+    SPECTRE_USERNAME="${MPW_FULLNAME}"
 
-    # Start Master Password and copy the output.
-    printf %s "$(MPW_FULLNAME=$MPW_FULLNAME command mpw "$@")" | __copy
+    printf %s "$(MPW_FULLNAME=$MPW_FULLNAME SPECTRE_USERNAME="${SPECTRE_USERNAME}" command ${mpw_cmd} "$@")" | __copy
 }
+
