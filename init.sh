@@ -1,5 +1,18 @@
 #!/bin/bash
 
+if [ "$( uname -s )" == "Darwin" ] && ! hash brew && ! hash realpath ; then
+    if ! hash brew ; then
+        echo "You need homebrew and coreutil"
+        exit 1
+    fi
+
+    if ! hash realpath ; then
+        echo "You need the coreutils"
+        exit 1
+    fi
+fi
+
+
 MYPATH="$( dirname "$( realpath "$0" )" )"
 
 function createLink {
@@ -9,12 +22,16 @@ function createLink {
 
 createLink '.bash.d'
 createLink '.editorconfig'
-createLink '.screenlayout'
-createLink '.xkb'
 
-ls ${MYPATH}/.config | while read f ; do
+if [ "$( uname -s )" != "Darwin" ] ; then
+    createLink '.screenlayout'
+    createLink '.xkb'
+fi
+
+git clone https://github.com/NvChad/NvChad ~/.config/nvim
+
+ls ${MYPATH}/.config \
+| while read f ; do
     createLink .config/$f
 done
 
-mkdir ~/.config/nvim/bundle
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.config/nvim/bundle/Vundle.vim
