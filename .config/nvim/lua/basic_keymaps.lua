@@ -33,7 +33,8 @@ vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower win
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 vim.keymap.set("n", "<Tab>", ":bnext<CR>", { desc = "Open next buffer" })
-vim.keymap.set("n", "<S-Tab>", ":bprev<CR>", { desc = "Open next buffer" })
+vim.keymap.set("n", "<S-Tab>", ":bprev<CR>", { desc = "Open previous buffer" })
+vim.keymap.set("n", "<leader>x", ":bdelete<CR>", { desc = "Close buffer" })
 
 vim.keymap.set("n", "<C-f>", "<C-f>zz", {})
 vim.keymap.set("n", "<C-b>", "<C-b>zz", {})
