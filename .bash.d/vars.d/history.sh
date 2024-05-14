@@ -21,4 +21,3 @@ shopt -s cmdhist
 
 # Store history immediately
 PROMPT_COMMAND='history -a'
-

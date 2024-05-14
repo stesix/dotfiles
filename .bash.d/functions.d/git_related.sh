@@ -54,4 +54,3 @@ function parse_git_dirty {
         echo " ${bits}"
     fi
 }
-

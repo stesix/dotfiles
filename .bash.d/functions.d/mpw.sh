@@ -16,4 +16,3 @@ mpw() {
 
     printf %s "$(MPW_FULLNAME=$MPW_FULLNAME SPECTRE_USERNAME="${SPECTRE_USERNAME}" command ${mpw_cmd} "$@")" | __copy
 }
-

@@ -34,4 +34,3 @@ ls ${MYPATH}/.config \
 | while read f ; do
     createLink .config/$f
 done
-
