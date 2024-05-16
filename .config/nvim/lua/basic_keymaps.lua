@@ -32,9 +32,20 @@ vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right win
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
-vim.keymap.set("n", "<Tab>", ":bnext<CR>", { desc = "Open next buffer" })
-vim.keymap.set("n", "<S-Tab>", ":bprev<CR>", { desc = "Open previous buffer" })
-vim.keymap.set("n", "<leader>x", ":bdelete<CR>", { desc = "Close buffer" })
+vim.keymap.set("n", "<Tab>", "<cmd>bnext<CR>", { desc = "Open next buffer" })
+vim.keymap.set("n", "<S-Tab>", "<cmd>bprev<CR>", { desc = "Open previous buffer" })
+vim.keymap.set("n", "<leader>x", "<cmd>bdelete<CR>", { desc = "Close buffer" })
 
 vim.keymap.set("n", "<C-f>", "<C-f>zz", {})
 vim.keymap.set("n", "<C-b>", "<C-b>zz", {})
+
+vim.keymap.set("i", "<C-c>", "<Esc>")
+
+vim.keymap.set("x", "<leader>p", [["_dP]])
+
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set("n", "<leader>rr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>")
