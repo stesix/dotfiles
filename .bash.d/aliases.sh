@@ -1,7 +1,12 @@
 #!/bin/bash
 
-alias ls='ls --color=auto'
-alias ll='ls -alF'
+if hash eza ; then
+    alias ls='eza'
+    alias ll='eza --git --icons --octal-permissions --long --header --no-user --no-permissions --all'
+else
+    alias ls='ls --color=auto'
+    alias ll='ls -alF'
+fi
 
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
