@@ -1,9 +1,9 @@
 [init]
-	templatedir = ~/.config/git/template
+    templatedir = ~/.config/git/template
 [core]
     editor = vim
-	autocrlf = false
-	excludesfile = ~/.config/git/gitignore_global
+    autocrlf = false
+    excludesfile = ~/.config/git/gitignore_global
     pager = delta
 [interactive]
     diffFilter = delta --color-only
@@ -13,7 +13,7 @@
 [diff]
     colorMoved = default
 [push]
-	default = simple
+    default = simple
 [merge]
     tool = vimdiff
 [alias]
@@ -22,70 +22,19 @@
     co = checkout
     amend = commit --amend
 
-    #cobf = "!f() { git brd $1; git cob $1; }; f"
-
-    resh = "!f() { git stash && git reset --hard $@; }; f"
-    reshu = !git resh `git upstream`
     undo = reset HEAD^1
-    cundoh = !git stash && git reset HEAD^1 --hard
     unstage = reset HEAD
 
     tags = tag -l
 
-    s = show --color
-    sw = show --color --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
-    sf = show --color -C --stat
-
-    d = diff --color
-    dw = diff --color --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
-
-    f = fetch
     fu = !git fetch `git upstream-remote`
     fa = fetch --all
     fo = fetch origin
 
-    m = merge --no-edit
-    unm = reset --merge
-
-    ps = push
-    pl = pull
-
     st = status
-    sttc = !git status | grep typechange | awk '{print $2}'
-    stmo = !git status | grep modified | awk '{print $2}'
 
-    a = add
-    aa = add --all
     ap = add -p
-    resolve-unmerged = !git add `git unmerged`
-    add-untracked = !git add `git untracked`
-
-    rmf = rm -rf
-
-    sh = stash
-    shp = stash pop
-    shl = stash list
-    shd = stash drop
-    shc = stash clear
-    sha = stash apply
-
-    chp = cherry-pick
-
     br = branch
-    brd = branch -D
-
-    sm = submodule
-    smst = submodule --status
-    sma = submodule add
-    smu = submodule update
-    sme = submodule foreach
-    smepl = submodule foreach "(git checkout master; git pull)&"
-    smui = submodule update --init
-    smuir = submodule update --init --recursive
-    smd = submodule deinit
-    sms = submodule sync
-    smpl = submodule foreach git pull origin master
-
     bl = blame
 
     gcp = gc --prune=now
@@ -101,17 +50,6 @@
     pr = prune
     prm = !git rfe && git gcp
 
-    fsize = git ls-tree -r -t -l --full-name HEAD | sort -rn -k 4 | less
-
-    findemptydirs = !"find . -type d -empty ! -path ./tmp/\\*"
-    deleteemptydirs = !"find . -type d -empty ! -path ./tmp/\\* -exec rmdir {} \\;"
-
-    ### WorkTree related
-    wt = worktree
-    wtls = worktree list
-    wta = worktree add
-    wtrm = "!f() { if [ -z \"$1\" ] ; then echo \"Branch name required\" ; exit 1; fi;/bin/rm -rf \"$( git root )/worktree_branches/$1\" ; git worktree remove $1; }; f"
-
 [includeIf "gitdir:~/repos.deloitte/"]
     path = "~/repos.deloitte/.gitconfig"
 
@@ -119,4 +57,4 @@
     path = "~/repos.other/.gitconfig"
 
 [http]
-	cookiefile = /Users/ssicco/.gitcookies
+    cookiefile = ~/.gitcookies
