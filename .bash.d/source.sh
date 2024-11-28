@@ -5,6 +5,21 @@ if [ $0 == "$BASH_SOURCE" ] ; then
     exit 1
 fi
 
+if [ -n "$HOMEBREW_PREFIX" ] ; then
+    [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]] && . "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+
+    [[ -d "${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin" ]] && PATH="${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin:$PATH"
+    [[ -d "${HOMEBREW_PREFIX}/opt/gnu-which/libexec/gnubin" ]] && PATH="${HOMEBREW_PREFIX}/opt/gnu-which/libexec/gnubin:$PATH"
+    [[ -d "${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin:$PATH" ]] && PATH="${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin:$PATH"
+    [[ -d "${HOMEBREW_PREFIX}/opt/grep/libexec/gnubin" ]] && PATH="${HOMEBREW_PREFIX}/opt/grep/libexec/gnubin:$PATH"
+    [[ -d "${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin" ]] && PATH="${HOMEBREW_PREFIX}/opt/coreutils/libexec/gnubin:$PATH"
+    [[ -d "${HOMEBREW_PREFIX}/opt/gawk/libexec/gnubin" ]] && PATH="${HOMEBREW_PREFIX}/opt/gawk/libexec/gnubin:$PATH"
+    [[ -d "${HOMEBREW_PREFIX}/opt/make/libexec/gnubin" ]] && PATH="${HOMEBREW_PREFIX}/opt/make/libexec/gnubin:$PATH"
+
+    [[ -r ${HOMEBREW_PREFIX}/etc/bash_completion.d/brew ]] && . ${HOMEBREW_PREFIX}/etc/bash_completion.d/brew
+    [[ -r ${HOMEBREW_PREFIX}/etc/bash_completion.d/google-cloud-sdk ]] && . ${HOMEBREW_PREFIX}/etc/bash_completion.d/google-cloud-sdk
+fi
+
 BASHED_BASE_PATH="$( dirname "$( realpath $BASH_SOURCE )" )"
 
 function getFileList {
@@ -13,13 +28,11 @@ function getFileList {
     find "${BASHED_BASE_PATH}/autocomplete.d" -type f -name "*.sh" -o -name "*.bash"
 }
 
+export BAT_THEME='Catppuccin Mocha'
+export EDITOR=nvim
+
 source ${BASHED_BASE_PATH}/aliases.sh
-if [ -f ~/.secrets/init.sh ] ; then
-     source ~/.secrets/init.sh
-fi
 
 for file in $( getFileList ) ; do
     source $file
 done
-
-PS1="\$( parse_git_branch )\[${Cyan}\]\W \[${IWhite}\]$ \[${ColorOff}\]"

@@ -16,3 +16,10 @@ if ! hash pbcopy 2> /dev/null ; then
     alias pbcopy='xsel --clipboard --input'
     alias pbpaste='xsel --clipboard --output'
 fi
+
+if hash nvim ; then
+    alias vim='nvim'
+fi
+
+alias mkctl='microk8s kubectl'
+alias docker-compose='docker compose'
