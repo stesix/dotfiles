@@ -28,8 +28,6 @@ if [ "$( uname -s )" != "Darwin" ] ; then
     createLink '.xkb'
 fi
 
-git clone https://github.com/NvChad/NvChad ~/.config/nvim
-
 ls ${MYPATH}/.config \
 | while read f ; do
     createLink .config/$f
