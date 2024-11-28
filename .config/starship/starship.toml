@@ -1,0 +1,32 @@
+add_newline = false
+
+format = """
+$directory\
+$git_branch\
+$git_status\
+$git_state\
+$character
+"""
+
+palette = "catppuccin_mocha"
+
+right_format = """$all"""
+
+[git_branch]
+format = '[$symbol$branch]($style) '
+
+[git_commit]
+
+[directory]
+truncate_to_repo = true
+truncation_length = 8
+truncation_symbol = '…/'
+
+[aws]
+disabled = true
+
+[azure]
+disabled = true
+
+[gcloud]
+disabled = true
