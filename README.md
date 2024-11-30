@@ -1,0 +1,3 @@
+# Dotfiles
+
+Use `stow`

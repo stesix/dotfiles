@@ -2,6 +2,7 @@
 
 if hash eza ; then
     alias ls='eza'
+    alias la='eza -A'
     alias ll='eza --git --icons --octal-permissions --long --header --no-user --no-permissions --all'
 else
     alias ls='ls --color=auto'
