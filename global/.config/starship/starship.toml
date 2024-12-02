@@ -7,6 +7,7 @@ $directory\
 $git_branch\
 $git_status\
 $git_state\
+$shell\
 $character
 """
 
@@ -22,6 +23,13 @@ truncate_to_repo = true
 truncation_length = 8
 truncation_symbol = '…/'
 
+[shell]
+disabled = false
+style = 'underline bold yellow'
+bash_indicator = '󱆃'
+nu_indicator = '󰅬'
+
+# Disable cloud related stuff
 [aws]
 disabled = true
 
