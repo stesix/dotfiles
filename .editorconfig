@@ -14,7 +14,7 @@ indent_size = 2
 [{Dockerfile,Jenkinsfile}]
 indent_size = 4
 
-[*.{md,sh,conf,dockerfile,jenkinsfile}]
+[*.{md,nu,sh,conf,dockerfile,jenkinsfile}]
 indent_size = 4
 
 [*.vim]

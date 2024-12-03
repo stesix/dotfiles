@@ -38,6 +38,7 @@ $env.EDITOR = "nvim"
 
 # Use nushell functions to define your right and left prompt
 $env.PROMPT_COMMAND = {|| create_left_prompt }
+
 # FIXME: This default is not implemented in rust code as of 2023-09-08.
 $env.PROMPT_COMMAND_RIGHT = {|| create_right_prompt }
 
@@ -75,15 +76,13 @@ $env.ENV_CONVERSIONS = {
     }
 }
 
-# Directories to search for scripts when calling source or use
-# The default for this is $nu.default-config-dir/scripts
+$env.NUPM_HOME = ($env.XDG_DATA_HOME | path join "nupm")
 $env.NU_LIB_DIRS = [
     ($nu.default-config-dir | path join 'scripts') # add <nushell-config-dir>/scripts
     ($nu.data-dir | path join 'completions') # default home for nushell completions
+    ($env.NUPM_HOME | path join "modules")
 ]
 
-# Directories to search for plugin binaries when calling register
-# The default for this is $nu.default-config-dir/plugins
 $env.NU_PLUGIN_DIRS = [
     ($nu.default-config-dir | path join 'plugins') # add <nushell-config-dir>/plugins
 ]
@@ -98,6 +97,14 @@ $env.NU_PLUGIN_DIRS = [
 # path add ($env.CARGO_HOME | path join "bin")
 # path add ($env.HOME | path join ".local" "bin")
 # $env.PATH = ($env.PATH | uniq)
+
+$env.PATH = (
+    $env.PATH
+        | split row (char esep)
+        | prepend ($env.NUPM_HOME | path join "scripts")
+        | prepend ($env.HOME | path join ".cargo/bin")
+        | uniq
+)
 
 # To load from a custom file you can use:
 source ($nu.default-config-dir | path join 'custom.nu')
