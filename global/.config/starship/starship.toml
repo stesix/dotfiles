@@ -3,11 +3,11 @@ palette = "catppuccin_mocha"
 add_newline = false
 
 format = """
+$shell\
 $directory\
 $git_branch\
 $git_status\
 $git_state\
-$shell\
 $character
 """
 
@@ -15,6 +15,7 @@ right_format = """$all"""
 
 [git_branch]
 format = '[$symbol$branch]($style) '
+symbol = ''
 
 [git_commit]
 
