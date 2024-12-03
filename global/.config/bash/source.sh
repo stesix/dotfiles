@@ -6,7 +6,7 @@ if [ $0 == "$BASH_SOURCE" ] ; then
 fi
 
 if [ -n "$HOMEBREW_PREFIX" ] ; then
-    [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]] && . "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+#    [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]] && . "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
 
     [[ -d "${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin" ]] && PATH="${HOMEBREW_PREFIX}/opt/gnu-sed/libexec/gnubin:$PATH"
     [[ -d "${HOMEBREW_PREFIX}/opt/gnu-which/libexec/gnubin" ]] && PATH="${HOMEBREW_PREFIX}/opt/gnu-which/libexec/gnubin:$PATH"
@@ -16,16 +16,16 @@ if [ -n "$HOMEBREW_PREFIX" ] ; then
     [[ -d "${HOMEBREW_PREFIX}/opt/gawk/libexec/gnubin" ]] && PATH="${HOMEBREW_PREFIX}/opt/gawk/libexec/gnubin:$PATH"
     [[ -d "${HOMEBREW_PREFIX}/opt/make/libexec/gnubin" ]] && PATH="${HOMEBREW_PREFIX}/opt/make/libexec/gnubin:$PATH"
 
-    [[ -r ${HOMEBREW_PREFIX}/etc/bash_completion.d/brew ]] && . ${HOMEBREW_PREFIX}/etc/bash_completion.d/brew
-    [[ -r ${HOMEBREW_PREFIX}/etc/bash_completion.d/google-cloud-sdk ]] && . ${HOMEBREW_PREFIX}/etc/bash_completion.d/google-cloud-sdk
+    [[ -r ${HOMEBREW_PREFIX}/etc/bash_completion.d/brew ]] && source ${HOMEBREW_PREFIX}/etc/bash_completion.d/brew
+    [[ -r ${HOMEBREW_PREFIX}/etc/bash_completion.d/google-cloud-sdk ]] && source ${HOMEBREW_PREFIX}/etc/bash_completion.d/google-cloud-sdk
 fi
 
 BASHED_BASE_PATH="$( dirname "$( realpath $BASH_SOURCE )" )"
 
 function getFileList {
-    find "${BASHED_BASE_PATH}/vars.d" -type f -name "*.sh" -o -name "*.bash"
-    find "${BASHED_BASE_PATH}/functions.d" -type f -name "*.sh" -o -name "*.bash"
-    find "${BASHED_BASE_PATH}/autocomplete.d" -type f -name "*.sh" -o -name "*.bash"
+    find "${BASHED_BASE_PATH}/vars.d" -type f -name "*.sh" -o -name "*.bash" | sort
+    find "${BASHED_BASE_PATH}/functions.d" -type f -name "*.sh" -o -name "*.bash" | sort
+    find "${BASHED_BASE_PATH}/autocomplete.d" -type f -name "*.sh" -o -name "*.bash" | sort
 }
 
 export BAT_THEME='Catppuccin Mocha'

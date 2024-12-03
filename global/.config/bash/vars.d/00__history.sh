@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Append history instead of rewriting it
 shopt -s histappend

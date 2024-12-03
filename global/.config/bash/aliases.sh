@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if hash ${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin/find ; then
+    alias find=${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin/find
+fi
+
+
 if hash eza ; then
     alias ls='eza'
     alias la='eza -A'
