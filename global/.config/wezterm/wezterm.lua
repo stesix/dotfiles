@@ -17,6 +17,7 @@ config.color_scheme = 'Catppuccin Mocha'
 if is_osx then
   config.set_environment_variables = {
     XDG_CONFIG_HOME = '/Users/' .. (os.getenv('USERNAME') or os.getenv('USER')) .. '/.config',
+    XDG_DATA_HOME = '/Users/' .. (os.getenv('USERNAME') or os.getenv('USER')) .. '/.local/share',
     HOMEBREW_PREFIX = '/opt/homebrew',
   }
 end
