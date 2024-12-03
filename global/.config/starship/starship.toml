@@ -40,6 +40,8 @@ disabled = true
 [gcloud]
 disabled = true
 
+[nodejs]
+disabled = true
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
