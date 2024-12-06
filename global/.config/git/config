@@ -1,7 +1,7 @@
 [init]
     templatedir = ~/.config/git/template
 [core]
-    editor = vim
+    editor = nvim
     autocrlf = false
     excludesfile = ~/.config/git/gitignore_global
     pager = delta
@@ -39,6 +39,9 @@
 
 [includeIf "gitdir:~/repos.other/"]
     path = "~/repos.other/.gitconfig"
+
+[includeIf "gitdir:~/repos.github/"]
+    path = "~/repos.github/.gitconfig"
 
 [http]
     cookiefile = ~/.gitcookies
