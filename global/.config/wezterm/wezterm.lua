@@ -11,10 +11,15 @@ local is_osx = wezterm.target_triple == 'aarch64-apple-darwin'
 
 config.unix_domains = { { name = 'unix' } }
 config.default_gui_startup_args = { 'connect', 'unix' }
-config.default_prog = { '/opt/homebrew/bin/bash', '--login' }
 config.color_scheme = 'Catppuccin Mocha'
 
+if is_linux then
+  config.default_prog = { 'bash', '--login' }
+  config.font_size = 13
+end
+
 if is_osx then
+  config.default_prog = { '/opt/homebrew/bin/bash', '--login' }
   config.set_environment_variables = {
     XDG_CONFIG_HOME = '/Users/' .. (os.getenv('USERNAME') or os.getenv('USER')) .. '/.config',
     XDG_DATA_HOME = '/Users/' .. (os.getenv('USERNAME') or os.getenv('USER')) .. '/.local/share',
