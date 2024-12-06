@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if hash ${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin/find ; then
+if [ -n "${HOMEBREW_PREFIX}" ] && [ -f "${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin/find" ] ; then
     alias find=${HOMEBREW_PREFIX}/opt/findutils/libexec/gnubin/find
 fi
 
