@@ -1,3 +1,3 @@
 # Dotfiles
 
-Use `stow`
+Use `./init.sh` to initialize the environment.
