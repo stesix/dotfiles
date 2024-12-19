@@ -34,14 +34,8 @@
 
     pr = prune
 
-[includeIf "gitdir:~/repos.deloitte/"]
-    path = "~/repos.deloitte/.gitconfig"
-
-[includeIf "gitdir:~/repos.other/"]
-    path = "~/repos.other/.gitconfig"
-
-[includeIf "gitdir:~/repos.github/"]
-    path = "~/repos.github/.gitconfig"
-
 [http]
     cookiefile = ~/.gitcookies
+
+[include]
+    path = ~/.config/git/identities.inc
