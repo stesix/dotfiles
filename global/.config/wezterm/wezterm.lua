@@ -15,7 +15,11 @@ config.color_scheme = 'Catppuccin Mocha'
 
 if is_linux then
   config.default_prog = { 'bash', '--login' }
-  config.font_size = 13
+  config.font_size = 16
+  config.set_environment_variables = {
+    XDG_CONFIG_HOME = '/home/' .. (os.getenv('USERNAME') or os.getenv('USER')) .. '/.config',
+    XDG_DATA_HOME = '/home/' .. (os.getenv('USERNAME') or os.getenv('USER')) .. '/.local/share',
+  }
 end
 
 if is_osx then
