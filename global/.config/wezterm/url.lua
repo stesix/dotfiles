@@ -10,6 +10,18 @@ function M.apply(config)
     regex = [[(AH-\d{3,4})]],
     format = 'https://jira.de.deloitte.com/browse/$1',
   })
+
+  table.insert(config.hyperlink_rules, {
+    regex = '\\bfile://\\S*\\b',
+    format = '$0',
+  })
+
+  -- Now add a new item at the bottom to match things that are
+  -- probably filenames
+  table.insert(config.hyperlink_rules, {
+    regex = '[/.A-Za-z0-9_-]+\\.[A-Za-z0-9]+(:\\d+)*(?=\\s*|$)',
+    format = '$EDITOR:$0',
+  })
 end
 
 return M
