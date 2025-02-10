@@ -38,4 +38,7 @@
     cookiefile = ~/.gitcookies
 
 [include]
+    path = ~/.config/git/conversion_rules.inc
+
+[include]
     path = ~/.config/git/identities.inc
