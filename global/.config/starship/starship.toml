@@ -3,6 +3,7 @@ palette = "catppuccin_mocha"
 add_newline = false
 
 format = """
+$hostname\
 $shell\
 $directory\
 $git_branch\
@@ -48,6 +49,9 @@ disabled = true
 
 [python]
 disabled = true
+
+[hostname]
+format = '[$ssh_symbol$hostname]($style) '
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
