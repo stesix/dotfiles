@@ -1,6 +1,27 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-include ~/.config/i3/variables.conf
+###############################################################################
+## Variables
+
+# Variables are shared among all config files BUT
+# - you can define a variable and use it within an included file
+# - you cannot use (in the parent file) a variable that was defined within an
+#   included file
+
+set $superL Mod4
+set $superR Mod3
+
+set $ws1 "1: "
+set $ws2 "2: "
+set $ws3 "3: "
+set $ws4 "4: "
+set $ws5 "5: "
+set $ws6 "6: "
+set $ws7 "7: "
+set $ws8 "8: "
+set $ws9 "9: "
+set $ws10 "10: "
+
 include ~/.config/i3/colors.conf
 include ~/.config/i3/bindings.conf
 
