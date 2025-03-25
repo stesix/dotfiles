@@ -1,5 +1,13 @@
 # MPW Autocomplete
 
+export MPW_ENTRIES_PATH
+
+if which mpw &>/dev/null ; then
+    MPW_ENTRIES_PATH="$HOME/.mpw.d/$MPW_FULLNAME"
+elif which spectre &>/dev/null ; then
+    MPW_ENTRIES_PATH="$HOME/.spectre.d/$MPW_FULLNAME"
+fi
+
 function __mpw_entries {
     local cur prev opts base
     COMPREPLY=()
@@ -7,7 +15,7 @@ function __mpw_entries {
     cur="${COMP_WORDS[COMP_CWORD]}"
     COMPREPLY=( \
         $( compgen -W \
-            "$( jq '.sites | to_entries | .[] .key' $HOME/.mpw.d/"$MPW_FULLNAME"*.*json | sort -u | sed 's/"//g' )" \
+            "$( jq '.sites | to_entries | .[] .key' "$MPW_ENTRIES_PATH"*.*json | sort -u | sed 's/"//g' )" \
             $cur \
         ) \
     )
