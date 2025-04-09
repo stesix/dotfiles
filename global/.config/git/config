@@ -16,23 +16,14 @@
     default = simple
 [merge]
     tool = vimdiff
-[alias]
-    # most of these are coming from brauliobo
-    root = rev-parse --show-toplevel
-    co = checkout
-    amend = commit --amend
-
-    undo = reset HEAD^1
-    unstage = reset HEAD
-
-    tags = tag -l
-
-    st = status
-
-    ap = add -p
-    br = branch
-
-    pr = prune
+[branch]
+    sort = -committerdate
+[rerere]
+    enabled = true
+[push]
+    autoSetupRemote = true
+[init]
+    defaultBranch = main
 
 [http]
     cookiefile = ~/.gitcookies
@@ -42,3 +33,6 @@
 
 [include]
     path = ~/.config/git/identities.inc
+
+[include]
+    path = ~/.config/git/aliases.inc
