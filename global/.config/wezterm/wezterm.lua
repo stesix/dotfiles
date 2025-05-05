@@ -63,9 +63,10 @@ wezterm.on('restore_session', function(window)
   session_manager.restore_state(window)
 end)
 
-wezterm.on('gui-startup', function()
-  local _, _, window = wezterm.mux.spawn_window({})
-  window:gui_window():maximize()
+wezterm.on('gui-startup', function(window)
+  local _, pane, window = wezterm.mux.spawn_window({})
+  local gui_window = window:gui_window()
+  gui_window:perform_action(wezterm.action.ToggleFullScreen, pane)
 end)
 
 return config
