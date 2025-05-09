@@ -1,0 +1,5 @@
+[ui]
+color = "auto"
+log-word-wrap = true
+editor = "nvim"
+default-command = "log"
