@@ -9,3 +9,7 @@ function azdo_auth() {
 function azdo_openai() {
     export AZURE_API_KEY="$(keepassxc-cli show --key-file ${KEEPASS_KEY} -a PASSWORD ${KEEPASS_DB} ${KEEPASS_AZOPENAI_NAME})"
 }
+
+function azdo_terraform() {
+    export AZDO_PERSONAL_ACCESS_TOKEN="$(keepassxc-cli show --key-file ${KEEPASS_KEY} -a PASSWORD ${KEEPASS_DB} ${KEEPASS_AZDO_PAT})"
+}
