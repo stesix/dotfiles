@@ -14,6 +14,12 @@ else
     alias ll='ls -alF'
 fi
 
+if hash atuin ; then
+    alias as='atuin script'
+    alias asr='atuin script run'
+    alias asl='atuin script list'
+fi
+
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
@@ -29,3 +35,4 @@ fi
 
 alias mkctl='microk8s kubectl'
 alias docker-compose='docker compose'
+alias tf='terraform'
