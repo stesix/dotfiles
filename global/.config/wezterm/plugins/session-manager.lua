@@ -1,6 +1,59 @@
 local wezterm = require('wezterm')
 local session_manager = {}
-local os = wezterm.target_triple
+local target_triple = wezterm.target_triple
+local path_sep = package.config:sub(1, 1)
+
+local function trim_trailing_sep(str)
+  if str:sub(-1) == path_sep then
+    return str:sub(1, -2)
+  end
+  return str
+end
+
+local function trim_leading_sep(str)
+  if str:sub(1, 1) == path_sep then
+    return str:sub(2)
+  end
+  return str
+end
+
+local function join_paths(head, ...)
+  local result = trim_trailing_sep(head)
+  local pieces = { ... }
+
+  for _, piece in ipairs(pieces) do
+    piece = trim_leading_sep(trim_trailing_sep(piece))
+    result = result .. path_sep .. piece
+  end
+
+  return result
+end
+
+local state_dir = join_paths(wezterm.config_dir, 'wezterm-session-manager')
+local state_dir_ready = false
+
+local function ensure_state_dir()
+  if state_dir_ready then
+    return
+  end
+
+  if target_triple == 'x86_64-pc-windows-msvc' then
+    wezterm.run_child_process({
+      'cmd.exe',
+      '/c',
+      string.format('if not exist "%s" mkdir "%s"', state_dir, state_dir),
+    })
+  else
+    wezterm.run_child_process({ 'mkdir', '-p', state_dir })
+  end
+
+  state_dir_ready = true
+end
+
+local function state_file_path(workspace_name)
+  ensure_state_dir()
+  return join_paths(state_dir, string.format('wezterm_state_%s.json', workspace_name))
+end
 
 --- Displays a notification in WezTerm.
 -- @param message string: The notification message to be displayed.
@@ -74,10 +127,10 @@ end
 -- @param workspace_data table: The data structure containing the saved workspace state.
 local function recreate_workspace(window, workspace_data)
   local function extract_path_from_dir(working_directory)
-    if os == 'x86_64-pc-windows-msvc' then
+    if target_triple == 'x86_64-pc-windows-msvc' then
       -- On Windows, transform 'file:///C:/path/to/dir' to 'C:/path/to/dir'
       return working_directory:gsub('file:///', '')
-    elseif os == 'x86_64-unknown-linux-gnu' then
+    elseif target_triple == 'x86_64-unknown-linux-gnu' then
       -- On Linux, transform 'file://{computer-name}/home/{user}/path/to/dir' to '/home/{user}/path/to/dir'
       return working_directory:gsub('^.*(/home/)', '/home/')
     else
@@ -155,11 +208,8 @@ local function recreate_workspace(window, workspace_data)
       -- Restore TTY for Neovim on Linux
       -- NOTE: cwd is handled differently on windows. maybe extend functionality for windows later
       -- This could probably be handled better in general
-      if not (os == 'x86_64-pc-windows-msvc') then
-        if
-          not (os == 'x86_64-pc-windows-msvc')
-          and pane_data.tty:sub(-#'/bin/nvim') == '/bin/nvim'
-        then
+      if target_triple ~= 'x86_64-pc-windows-msvc' then
+        if pane_data.tty:sub(-#'/bin/nvim') == '/bin/nvim' then
           new_pane:send_text(pane_data.tty .. ' .' .. '\n')
         else
           -- TODO - With running npm commands (e.g a running web client) this seems to execute Node, without the arguments
@@ -196,10 +246,7 @@ end
 --- Loads the saved json file matching the current workspace.
 function session_manager.restore_state(window)
   local workspace_name = window:active_workspace()
-  local file_path = wezterm.home_dir
-    .. '/.config/wezterm/wezterm-session-manager/wezterm_state_'
-    .. workspace_name
-    .. '.json'
+  local file_path = state_file_path(workspace_name)
 
   local workspace_data = load_from_json_file(file_path)
   if not workspace_data then
@@ -244,10 +291,7 @@ function session_manager.save_state(window)
   local data = retrieve_workspace_data(window)
 
   -- Construct the file path based on the workspace name
-  local file_path = wezterm.home_dir
-    .. '/.config/wezterm/plugins/wezterm_state_'
-    .. data.name
-    .. '.json'
+  local file_path = state_file_path(data.name)
 
   -- Save the workspace data to a JSON file and display the appropriate notification
   if save_to_json_file(data, file_path) then
