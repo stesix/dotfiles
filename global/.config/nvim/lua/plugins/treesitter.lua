@@ -1,6 +1,10 @@
 return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
+  lazy = false, -- Keep false to ensure loading for Neo-tree
+  main = 'nvim-treesitter.configs', -- Lazy handles the require logic here
+  branch = 'master', -- Explicitly force the stable branch
+
   opts = {
 
     -- A list of parser names, or "all"
@@ -43,7 +47,11 @@ return {
   },
   config = function(_, opts)
     require('nvim-treesitter.install').prefer_git = true
-    require('nvim-treesitter.configs').setup(opts)
+    local status_ok, configs = pcall(require, 'nvim-treesitter.configs')
+    if not status_ok then
+      return
+    end
+    configs.setup(opts)
 
     local treesitter_parser_config = require('nvim-treesitter.parsers').get_parser_configs()
     treesitter_parser_config.templ = {
