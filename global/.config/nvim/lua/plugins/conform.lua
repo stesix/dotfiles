@@ -1,6 +1,7 @@
 return { -- Autoformat
     "stevearc/conform.nvim",
-    lazy = false,
+    event = { "BufWritePre" }, -- Load before saving to enable format_on_save
+    cmd = { "ConformInfo" }, -- Also load when running :ConformInfo command
     keys = {
       {
         "<leader>f",
@@ -19,7 +20,7 @@ return { -- Autoformat
         -- languages here or re-enable it for the disabled ones.
         local disable_filetypes = { c = true, cpp = true }
         return {
-          timeout_ms = 500,
+          timeout_ms = 2000, -- Increased from 500ms to handle large files and slow formatters
           lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
         }
       end,

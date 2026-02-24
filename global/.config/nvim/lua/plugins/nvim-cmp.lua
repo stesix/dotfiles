@@ -66,14 +66,17 @@ return { -- Autocompletion
         --  completions whenever it has completion options available.
         ["<C-Space>"] = cmp.mapping.complete({}),
 
-        -- Think of <c-l> as moving to the right of your snippet expansion.
+        -- Snippet navigation: Jump forward/backward through snippet placeholders
+        -- Note: <C-l> and <C-h> are used here in INSERT mode for snippet jumps.
+        -- This does NOT conflict with window navigation (<C-h>/<C-l> in NORMAL mode).
+        -- Think of <C-l> as moving to the right of your snippet expansion.
         --  So if you have a snippet that's like:
         --  function $name($args)
         --    $body
         --  end
         --
-        -- <c-l> will move you to the right of each of the expansion locations.
-        -- <c-h> is similar, except moving you backwards.
+        -- <C-l> will move you to the right of each of the expansion locations.
+        -- <C-h> is similar, except moving you backwards.
         ["<C-l>"] = cmp.mapping(function()
           if luasnip.expand_or_locally_jumpable() then
             luasnip.expand_or_jump()
