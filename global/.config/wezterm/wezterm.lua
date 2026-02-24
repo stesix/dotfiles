@@ -14,8 +14,10 @@ config.default_gui_startup_args = { 'connect', 'unix' }
 config.color_scheme = 'Catppuccin Mocha'
 
 if is_linux then
+  -- local cursor = require('cursor')
   config.default_prog = { 'bash', '--login' }
   config.font_size = 16
+  config.default_cursor_style = 'SteadyBlock'
   config.set_environment_variables = {
     XDG_CONFIG_HOME = '/home/' .. (os.getenv('USERNAME') or os.getenv('USER')) .. '/.config',
     XDG_DATA_HOME = '/home/' .. (os.getenv('USERNAME') or os.getenv('USER')) .. '/.local/share',
@@ -66,7 +68,11 @@ end)
 wezterm.on('gui-startup', function(cmd)
   local _, pane, window = wezterm.mux.spawn_window(cmd or {})
   local gui_window = window:gui_window()
-  gui_window:perform_action(wezterm.action.ToggleFullScreen, pane)
+  if not is_linux then
+    gui_window:perform_action(wezterm.action.ToggleFullScreen, pane)
+  else
+    gui_window:maximize()
+  end
 end)
 
 return config

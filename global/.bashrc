@@ -21,4 +21,5 @@ fi
 
 export PATH="$PATH:$HOME/.local/bin"
 
+[[ -s "$HOME/.jabba/jabba.sh" ]] && source "$HOME/.jabba/jabba.sh"
 [[ -r ~/.config/bash/source.sh ]] && source ~/.config/bash/source.sh

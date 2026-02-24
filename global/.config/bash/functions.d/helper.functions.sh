@@ -3,6 +3,8 @@
 function __copy() {
     if hash pbcopy 2>/dev/null; then
         pbcopy
+    elif hash wl-copy &>/dev/null ; then
+        wl-copy
     elif hash clip.exe 2>/dev/null; then
         clip.exe
     elif hash xclip 2>/dev/null; then

@@ -4,7 +4,7 @@ mpw_cmd=''
 if command -v mpw &>/dev/null; then
     mpw_cmd="$(command -v mpw)"
 elif command -v spectre &>/dev/null; then
-    mpw_cmd="$(command -v spectre)"
+    mpw_cmd="$(command -v spectre) -tx -Fn"
 fi
 
 function mpw() {
