@@ -8,7 +8,7 @@ indent_size = 4
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-[*.{js,json,yml,yaml,tf,tfvars,lua}]
+[*.{js,json,jsonc,yml,yaml,tf,tfvars,lua}]
 indent_size = 2
 
 [{Dockerfile,Jenkinsfile}]
