@@ -1,7 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 export DISPLAY=${DISPLAY:-:0}
-
 
 xhost local:root
 

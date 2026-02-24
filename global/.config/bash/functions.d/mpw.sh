@@ -1,15 +1,15 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 mpw_cmd=''
-if which mpw &>/dev/null ; then
-    mpw_cmd="$( which mpw )"
-elif which spectre &>/dev/null ; then
-    mpw_cmd="$( which spectre )"
+if command -v mpw &>/dev/null; then
+    mpw_cmd="$(command -v mpw)"
+elif command -v spectre &>/dev/null; then
+    mpw_cmd="$(command -v spectre)"
 fi
 
-mpw() {
+function mpw() {
     # Empty the clipboard
-    :| __copy 2>/dev/null
+    : | __copy 2>/dev/null
 
     MPW_FULLNAME=${MPW_FULLNAME:-$(ask 'Your Full Name:')}
     SPECTRE_USERNAME="${MPW_FULLNAME}"

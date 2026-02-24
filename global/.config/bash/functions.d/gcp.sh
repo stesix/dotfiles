@@ -3,7 +3,7 @@
 function gcp_auth() {
     local user="$1"
 
-    if [ -z "$user" ] ; then
+    if [[ -z "$user" ]]; then
         echo "Usage: gcp_auth user_id"
         return 1
     fi
