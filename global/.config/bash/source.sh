@@ -35,7 +35,7 @@ function getFileList() {
 export BAT_THEME='Catppuccin Mocha'
 export EDITOR=nvim
 
-if [[ -d ~/bin ]] ; then
+if [[ -d ~/bin ]]; then
     PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 fi
 
