@@ -1,0 +1,156 @@
+# tap repositories and their packages
+
+tap homebrew/core
+brew ansible
+brew atuin
+brew azure-cli
+
+# Shells
+brew bash
+brew nushell
+
+# NU related plugins
+cargo "nu_plugin_hashes"
+cargo "nu_plugin_hcl"
+cargo "nu_plugin_highlight"
+cargo "nu_plugin_semver"
+
+# Lang
+brew go
+brew groovy
+brew luajit
+brew node
+brew rust
+brew terraform
+
+# GNU tools
+brew coreutils
+brew findutils
+brew fmt
+brew gawk
+brew gnu-sed
+brew gnu-which
+brew grep
+brew make
+brew wget
+brew xz
+
+# CLI tools
+brew fzf
+brew helm
+brew magic-wormhole.rs
+brew tmux
+
+# Editors
+brew neovim
+
+# Version Control
+brew git
+brew git-delta
+brew git-filter-repo
+brew jj
+
+# Linters and formatters
+brew ansible-lint
+brew black
+brew gitlint
+brew hadolint
+brew isort
+brew markdownlint-cli
+brew pre-commit
+brew prettier
+brew proselint
+brew pylint
+brew shellcheck
+brew shfmt
+brew tflint
+brew tfsec
+brew yamllint
+
+# Java related
+brew gradle
+
+# Python related
+brew pyenv
+brew uv
+
+# Terraform related
+brew terraform-docs
+brew terraform-ls
+
+# LLM
+brew opencode
+
+# PS1
+brew carapace
+brew starship
+
+# Basic CLI replacements
+brew bat
+brew eza
+brew fd
+brew ripgrep
+brew tlrc
+brew zoxide
+
+# Parsers
+brew jq
+brew tree-sitter
+brew yq
+
+# Shell completion
+brew bash-completion@2
+brew gradle-completion
+
+# Docker replacement
+brew colima
+
+# Other packages
+brew sshpass
+brew testssl
+
+tap homebrew/cask
+cask bruno
+cask caffeine
+cask gcloud-cli
+cask joplin
+cask spotify
+cask wezterm@nightly
+
+tap homebrew/services
+
+tap hashicorp/tap
+
+tap koekeishiya/formulae
+
+tap nikitabobko/tap
+cask aerospace
+
+tap rcmdnk/file
+brew brew-file
+
+tap theseal/ssh-askpass
+brew ssh-askpass
+
+# VSCode extensions
+vscode "angular.ng-template"
+vscode "davidanson.vscode-markdownlint"
+vscode "editorconfig.editorconfig"
+vscode "esbenp.prettier-vscode"
+vscode "github.copilot-chat"
+vscode "hashicorp.terraform"
+vscode "kevinglasson.cornflakes-linter"
+vscode "ms-python.debugpy"
+vscode "ms-python.isort"
+vscode "ms-python.python"
+vscode "ms-python.vscode-python-envs"
+vscode "ms-vscode-remote.remote-containers"
+vscode "ms-vscode-remote.remote-ssh"
+vscode "ms-vscode-remote.remote-ssh-edit"
+vscode "ms-vscode.makefile-tools"
+vscode "ms-vscode.remote-explorer"
+vscode "redhat.vscode-yaml"
+vscode "shd101wyy.markdown-preview-enhanced"
+vscode "sst-dev.opencode"
+vscode "timonwong.shellcheck"
+vscode "vscodevim.vim"
