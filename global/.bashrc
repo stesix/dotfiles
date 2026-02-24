@@ -1,7 +1,7 @@
 # If not running interactively, don't do anything
 case $- in
-    *i*) ;;
-      *) return;;
+*i*) ;;
+*) return ;;
 esac
 
 # check the window size after each command and, if necessary,
@@ -19,4 +19,6 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-[[ -r  ~/.config/bash/source.sh ]] && source ~/.config/bash/source.sh
+export PATH="$PATH:$HOME/.local/bin"
+
+[[ -r ~/.config/bash/source.sh ]] && source ~/.config/bash/source.sh
