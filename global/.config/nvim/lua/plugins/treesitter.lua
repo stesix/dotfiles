@@ -46,15 +46,15 @@ return {
     },
   },
   config = function(_, opts)
+    -- Prefer git for treesitter installations
     require('nvim-treesitter.install').prefer_git = true
-    local status_ok, configs = pcall(require, 'nvim-treesitter.configs')
-    if not status_ok then
-      return
-    end
-    configs.setup(opts)
 
-    local treesitter_parser_config = require('nvim-treesitter.parsers').get_parser_configs()
-    treesitter_parser_config.templ = {
+    -- Setup treesitter with opts (lazy.nvim handles errors gracefully)
+    require('nvim-treesitter.configs').setup(opts)
+
+    -- Add custom templ parser configuration
+    local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
+    parser_config.templ = {
       install_info = {
         url = 'https://github.com/vrischmann/tree-sitter-templ.git',
         files = { 'src/parser.c', 'src/scanner.c' },
@@ -62,6 +62,7 @@ return {
       },
     }
 
+    -- Register templ filetype with treesitter
     vim.treesitter.language.register('templ', 'templ')
   end,
 }
