@@ -39,26 +39,37 @@ vim.keymap.set('n', '<Tab>', '<cmd>bnext<CR>', { desc = 'Open next buffer' })
 vim.keymap.set('n', '<S-Tab>', '<cmd>bprev<CR>', { desc = 'Open previous buffer' })
 vim.keymap.set('n', '<leader>x', '<cmd>bdelete<CR>', { desc = 'Close buffer' })
 
-vim.keymap.set('n', '<C-f>', '<C-f>zz', {})
-vim.keymap.set('n', '<C-b>', '<C-b>zz', {})
+vim.keymap.set('n', '<C-f>', '<C-f>zz', { desc = 'Page down and center' })
+vim.keymap.set('n', '<C-b>', '<C-b>zz', { desc = 'Page up and center' })
 
-vim.keymap.set('i', '<C-c>', '<Esc>')
+vim.keymap.set('i', '<C-c>', '<Esc>', { desc = 'Exit insert mode' })
 
-vim.keymap.set('x', '<leader>p', [["_dP]])
+vim.keymap.set('x', '<leader>p', [["_dP]], { desc = 'Paste without yanking' })
 
-vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]])
-vim.keymap.set('n', '<leader>Y', [["+Y]])
-vim.keymap.set('n', '<leader>rr', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]], { desc = 'Yank to system clipboard' })
+vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = 'Yank line to system clipboard' })
+vim.keymap.set(
+  'n',
+  '<leader>rr',
+  [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+  { desc = 'Replace word under cursor' }
+)
 
-vim.keymap.set({ 'n', 'v' }, '<leader>d', [["_d]])
-vim.keymap.set('n', '<leader>mr', '<cmd>CellularAutomaton make_it_rain<CR>')
+vim.keymap.set({ 'n', 'v' }, '<leader>d', [["_d]], { desc = 'Delete to black hole register' })
+vim.keymap.set(
+  'n',
+  '<leader>mr',
+  '<cmd>CellularAutomaton make_it_rain<CR>',
+  { desc = '[M]ake it [R]ain (fun animation)' }
+)
 
-vim.keymap.set('n', 'n', 'nzzzv')
-vim.keymap.set('n', 'N', 'Nzzzv')
+vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Next search result (centered)' })
+vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Previous search result (centered)' })
 
-vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
+vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = '[P]roject [V]iew (netrw)' })
 
-vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move line up' })
-vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move line down' })
+-- Move lines in visual mode (J moves down, K moves up)
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move line down' })
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move line up' })
 
 vim.keymap.set('n', '<leader>fn', ':e %:p:h/', { desc = '[f]ile [n]ew in current buffer path' })

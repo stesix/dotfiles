@@ -16,10 +16,30 @@ return {
 
   bashls = {},
   terraformls = {},
-  -- pyright = {},
-  -- ts_ls = {}, -- TypeScript/JavaScript
-  -- jsonls = {},
+
+  -- Python
+  pyright = {
+    settings = {
+      python = {
+        analysis = {
+          autoSearchPaths = true,
+          useLibraryCodeForTypes = true,
+          diagnosticMode = 'openFilesOnly',
+        },
+      },
+    },
+  },
+
+  -- TypeScript/JavaScript
+  ts_ls = {},
+
+  -- JSON
+  jsonls = {},
+
+  -- Markdown
+  marksman = {},
 
   -- Add more servers as needed
   -- See `:help lspconfig-all` for available servers
+  -- Note: Groovy LSP support is limited. Consider using the groovy-language-server if needed.
 }
