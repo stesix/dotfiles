@@ -23,3 +23,18 @@ repos:
     hooks:
       - id: stylua
         stages: [pre-commit]
+
+  - repo: https://github.com/koalaman/shellcheck-precommit
+    rev: v0.11.0
+    hooks:
+      - id: shellcheck
+        args: ['--severity=warning']
+        exclude: 'global/.config/tmux/plugins/.*|global/.config/bash/autocomplete.d/fzf-bash-completion.sh'
+        stages: [pre-commit]
+
+  - repo: https://github.com/scop/pre-commit-shfmt
+    rev: v3.12.0-2
+    hooks:
+      - id: shfmt
+        exclude: 'global/.config/tmux/plugins/.*|global/.config/bash/autocomplete.d/fzf-bash-completion.sh'
+        stages: [pre-commit]

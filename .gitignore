@@ -1,2 +1,4 @@
 .netrwhist
 .aider*
+global/.config/tmux/plugins/
+*.backup-*
