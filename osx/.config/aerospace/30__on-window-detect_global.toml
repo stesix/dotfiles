@@ -25,5 +25,9 @@ if.app-id = 'com.deezer.deezer-desktop'
 run = "move-node-to-workspace 7"
 
 [[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = "move-node-to-workspace 7"
+
+[[on-window-detected]]
 if.app-id = 'net.cozic.joplin-desktop'
 run = "move-node-to-workspace 8"
