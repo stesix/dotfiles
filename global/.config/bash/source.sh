@@ -32,7 +32,6 @@ function getFileList() {
     find "${BASHED_BASE_PATH}/autocomplete.d" -type f -name "*.sh" -o -name "*.bash" | sort
 }
 
-export BAT_THEME='Catppuccin Mocha'
 export EDITOR=nvim
 
 if [[ -d ~/bin ]]; then
