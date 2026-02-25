@@ -36,3 +36,4 @@ fi
 alias mkctl='microk8s kubectl'
 alias docker-compose='docker compose'
 alias tf='terraform'
+alias stripcolors='sed "s/\x1B\[\([0-9]\{1,2\}\(;[0-9]\{1,2\}\)\?\)\?[mGK]//g"'
