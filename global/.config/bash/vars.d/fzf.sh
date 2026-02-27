@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
-# shellcheck disable=SC1090
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+if hash fzf &>/dev/null; then
+    bind -x '"\t": fzf_bash_completion'
+fi
