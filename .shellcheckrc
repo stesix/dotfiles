@@ -1,0 +1,3 @@
+external-sources=true
+
+disable=SC2126,SC1090
