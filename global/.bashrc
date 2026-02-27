@@ -1,3 +1,12 @@
+#!/usr/bin/env bash
+
+#################### Instruction for profiling bash starting process
+# mkdir -p ~/bash_profiling.d
+# PS4='+ $EPOCHREALTIME\011 '
+# exec 3>&2 2> ~/bash_profiling.d/bashstart.$EPOCHSECONDS.log
+# set -x
+#################### Instruction for profiling bash starting process
+
 # If not running interactively, don't do anything
 case $- in
 *i*) ;;
@@ -23,3 +32,8 @@ export PATH="$PATH:$HOME/.local/bin"
 
 [[ -s "$HOME/.jabba/jabba.sh" ]] && source "$HOME/.jabba/jabba.sh"
 [[ -r ~/.config/bash/source.sh ]] && source ~/.config/bash/source.sh
+
+#################### Use this when profiling bash starting process
+# set +x
+# exec 2>&3 3>&-
+#################### Use this when profiling bash starting process
