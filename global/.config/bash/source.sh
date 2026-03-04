@@ -32,7 +32,7 @@ function getFileList() {
 export EDITOR=nvim
 
 if [[ -d ~/bin ]]; then
-    PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+    PATH="$HOME/.cargo/bin:$HOME/bin:$HOME/.local/bin:$PATH"
 fi
 
 source ${BASHED_BASE_PATH}/aliases.sh
