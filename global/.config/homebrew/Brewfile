@@ -1,0 +1,161 @@
+#### Casks
+cask "nikitabobko/tap/aerospace"
+cask "bruno"
+cask "caffeine"
+cask "dbeaver-community"
+cask "font-cascadia-code-nf"
+cask "gcloud-cli"
+cask "ghostty"
+cask "intellij-idea-ce"
+cask "joplin"
+cask "spotify"
+cask "wezterm@nightly"
+
+#### Taps
+tap "hashicorp/tap"
+tap "homebrew/services"
+tap "koekeishiya/formulae"
+tap "nikitabobko/tap"
+tap "theseal/ssh-askpass"
+
+#### Formulas
+
+# Shells
+brew "bash"
+brew "fish"
+brew "nushell"
+
+# NU related plugins
+cargo "nu_plugin_hashes"
+cargo "nu_plugin_hcl"
+cargo "nu_plugin_highlight"
+cargo "nu_plugin_semver"
+
+# bash related
+brew "bash-completion@2"
+
+# Shell related
+brew "carapace"
+brew "starship"
+cargo "starship-jj"
+
+# Lang
+brew "ansible"
+brew "go"
+brew "openjdk"
+brew "gradle"
+brew "groovy"
+brew "rust"
+brew "hashicorp/tap/terraform"
+
+# Terraform related tools
+brew "terraformer"
+brew "terraform-docs"
+brew "terraform-ls"
+
+# Python related tools
+brew "pyenv"
+brew "uv"
+uv "keyring", with: ["artifacts-keyring"]
+
+# GNU Tools
+brew "coreutils"
+brew "findutils"
+brew "gawk"
+brew "gnu-sed"
+brew "gnu-which"
+brew "grep"
+brew "make"
+brew "wget"
+
+# CLI tools
+brew "atuin"
+brew "azure-cli"
+brew "bat"
+brew "cloud-sql-proxy"
+brew "eza"
+brew "fd"
+brew "fzf"
+brew "magic-wormhole.rs"
+brew "mas"
+brew "md5sha1sum"
+brew "pkgconf"
+brew "ripgrep"
+brew "tlrc"
+brew "tmux"
+brew "tree-sitter"
+brew "zoxide"
+
+# VCS
+brew "git"
+brew "git-delta"
+brew "git-filter-repo"
+brew "jj"
+
+# Linters and Formatters
+brew "ansible-lint"
+brew "black"
+brew "gitlint"
+brew "hadolint"
+brew "isort"
+brew "markdownlint-cli"
+brew "markdownlint-cli2"
+brew "pre-commit"
+brew "prettier"
+brew "proselint"
+brew "pylint"
+brew "shellcheck"
+brew "shfmt"
+brew "stylua"
+brew "tflint"
+brew "tfsec"
+brew "yamllint"
+
+# Parsers
+brew "jq"
+brew "yq"
+
+# K8S
+brew "helm"
+
+# Libraries
+brew "libsodium"
+brew "json-c"
+
+
+# Docker related
+brew "colima"
+
+# Editor
+brew "neovim"
+
+# AI Agent
+brew "opencode"
+
+# SSH related tools
+brew "sshpass"
+brew "testssl"
+brew "theseal/ssh-askpass/ssh-askpass"
+
+# VSCode extensions
+vscode "angular.ng-template"
+vscode "davidanson.vscode-markdownlint"
+vscode "editorconfig.editorconfig"
+vscode "esbenp.prettier-vscode"
+vscode "github.copilot-chat"
+vscode "hashicorp.terraform"
+vscode "kevinglasson.cornflakes-linter"
+vscode "ms-python.debugpy"
+vscode "ms-python.isort"
+vscode "ms-python.python"
+vscode "ms-python.vscode-python-envs"
+vscode "ms-vscode-remote.remote-containers"
+vscode "ms-vscode-remote.remote-ssh"
+vscode "ms-vscode-remote.remote-ssh-edit"
+vscode "ms-vscode.makefile-tools"
+vscode "ms-vscode.remote-explorer"
+vscode "redhat.vscode-yaml"
+vscode "shd101wyy.markdown-preview-enhanced"
+vscode "sst-dev.opencode"
+vscode "timonwong.shellcheck"
+vscode "vscodevim.vim"
