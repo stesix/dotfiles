@@ -5,11 +5,12 @@ cask "caffeine"
 cask "dbeaver-community"
 cask "font-cascadia-code-nf"
 cask "gcloud-cli"
+cask "gimp"
 cask "ghostty"
 cask "intellij-idea-ce"
 cask "joplin"
 cask "spotify"
-cask "wezterm@nightly"
+cask "wezterm@nightly", greedy: true
 
 #### Taps
 tap "hashicorp/tap"
