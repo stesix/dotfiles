@@ -11,8 +11,6 @@ local GLYPH_CIRCLE = nf.fa_circle --[[ '' ]]
 
 local M = {}
 
-local __cells__ = {} -- wezterm FormatItems (ref: https://wezfurlong.org/wezterm/config/lua/wezterm/format.html)
-
 -- stylua: ignore
 local colors = {
    default   = {
@@ -50,7 +48,7 @@ end
 ---@param bg string
 ---@param attribute table
 ---@param text string
-local _push = function(bg, fg, attribute, text)
+local _push = function(__cells__, bg, fg, attribute, text)
   table.insert(__cells__, { Background = { Color = bg } })
   table.insert(__cells__, { Foreground = { Color = fg } })
   table.insert(__cells__, { Attribute = attribute })
@@ -59,7 +57,7 @@ end
 
 M.setup = function()
   wezterm.on('format-tab-title', function(tab, _tabs, _panes, _config, hover)
-    __cells__ = {}
+    local __cells__ = {} -- wezterm FormatItems (ref: https://wezfurlong.org/wezterm/config/lua/wezterm/format.html)
 
     local left_bg
     local left_fg
@@ -94,23 +92,29 @@ M.setup = function()
     end
 
     -- Left semi-circle
-    _push(cs_colors.background, left_bg, { Intensity = 'Bold' }, GLYPH_SEMI_CIRCLE_LEFT)
+    _push(__cells__, cs_colors.background, left_bg, { Intensity = 'Bold' }, GLYPH_SEMI_CIRCLE_LEFT)
 
     -- Title
-    _push(left_bg, left_fg, { Intensity = 'Bold' }, title .. ' ')
+    _push(__cells__, left_bg, left_fg, { Intensity = 'Bold' }, title .. ' ')
 
     -- Unseen output alert
     if has_unseen_output then
-      _push(left_bg, '#f2cdcd', { Intensity = 'Bold' }, GLYPH_CIRCLE .. ' ')
+      _push(__cells__, left_bg, '#f2cdcd', { Intensity = 'Bold' }, GLYPH_CIRCLE .. ' ')
     else
-      _push(left_bg, '#f2cdcd', { Intensity = 'Bold' }, '  ')
+      _push(__cells__, left_bg, '#f2cdcd', { Intensity = 'Bold' }, '  ')
     end
 
     -- Right padding
-    _push(right_bg, right_fg, { Intensity = 'Bold' }, '|' .. tab.tab_index + 1)
+    _push(__cells__, right_bg, right_fg, { Intensity = 'Bold' }, '|' .. tab.tab_index + 1)
 
     -- Right semi-circle
-    _push('rgba(0, 0, 0, 0.4)', right_bg, { Intensity = 'Bold' }, GLYPH_SEMI_CIRCLE_RIGHT)
+    _push(
+      __cells__,
+      'rgba(0, 0, 0, 0.4)',
+      right_bg,
+      { Intensity = 'Bold' },
+      GLYPH_SEMI_CIRCLE_RIGHT
+    )
 
     return __cells__
   end)
