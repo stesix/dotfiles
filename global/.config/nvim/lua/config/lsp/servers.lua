@@ -8,9 +8,20 @@ return {
         completion = {
           callSnippet = 'Replace',
         },
-        -- Uncomment to disable noisy 'missing-fields' warnings
-        -- diagnostics = { disable = { 'missing-fields' } },
+        diagnostics = {
+          -- disable = { 'missing-fields' }
+        },
+        runtime = {
+          version = 'Lua 5.5',
+        },
       },
+    },
+    root_markers = {
+      '.luarc.json',
+      '.luarc.jsonc',
+      '.luacheckrc',
+      '.stylua.toml',
+      '.git',
     },
   },
 

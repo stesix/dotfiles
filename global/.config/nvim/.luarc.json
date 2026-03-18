@@ -5,7 +5,9 @@
   },
   "workspace": {
     "library": [
-      "${3rd}/busted/library"
+      "/opt/homebrew/share/nvim/runtime/lua",
+      "~/.local/share/nvim/lazy/lazy.nvim/lua",
+      "/usr/share/nvim/runtime/lua"
     ],
     "ignoreDir": [
       ".deps",
@@ -23,7 +25,10 @@
       "strong": "Warning",
       "strict": "Warning"
     },
-    "unusedLocalExclude": [ "_*" ],
+    "globals": [],
+    "unusedLocalExclude": [
+      "_*"
+    ],
     "disable": [
       "luadoc-miss-see-name"
     ]
