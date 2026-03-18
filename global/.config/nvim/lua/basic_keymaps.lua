@@ -41,13 +41,7 @@ vim.keymap.set(
   { desc = 'Replace word under cursor' }
 )
 
-vim.keymap.set({ 'n', 'v' }, '<leader>d', [["_d]], { desc = 'Delete to black hole register' })
-vim.keymap.set(
-  'n',
-  '<leader>mr',
-  '<cmd>CellularAutomaton make_it_rain<CR>',
-  { desc = '[M]ake it [R]ain (fun animation)' }
-)
+vim.keymap.set({ 'n', 'v' }, '<leader>D', [["_d]], { desc = 'Delete to black hole register' })
 
 vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Next search result (centered)' })
 vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Previous search result (centered)' })

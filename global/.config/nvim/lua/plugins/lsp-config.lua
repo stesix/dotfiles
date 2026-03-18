@@ -5,6 +5,7 @@ return {
     { 'williamboman/mason.nvim', config = true },
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
+    'hrsh7th/cmp-nvim-lsp',
     { 'j-hui/fidget.nvim', opts = {} },
     {
       'folke/lazydev.nvim',
@@ -44,15 +45,9 @@ return {
       automatic_installation = false,
       handlers = {
         function(server_name)
-          -- Exclude formatters incorrectly listed as LSP servers
-          local non_lsp_tools = { 'stylua', 'black', 'prettier', 'eslint_d' }
-          if vim.tbl_contains(non_lsp_tools, server_name) then
-            return
-          end
-
           -- Setup only explicitly configured servers
           if servers[server_name] then
-            local server = servers[server_name] or {}
+            local server = servers[server_name]
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             require('lspconfig')[server_name].setup(server)
           end
@@ -60,11 +55,9 @@ return {
       },
     })
 
-    -- Install additional tools (formatters, linters)
-    local tools = vim.tbl_keys(servers)
-    -- Add non-LSP tools here if needed (formatters, linters)
-    -- Note: stylua is installed via Homebrew to avoid mason-lspconfig bug
-
-    require('mason-tool-installer').setup({ ensure_installed = tools })
+    -- Install non-LSP tools (formatters, linters) by Mason package name.
+    -- mason-lspconfig handles LSP servers above via ensure_installed.
+    -- Add entries here when needed, e.g. 'stylua', 'black', 'prettier'.
+    require('mason-tool-installer').setup({ ensure_installed = {} })
   end,
 }

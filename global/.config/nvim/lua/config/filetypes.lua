@@ -1,14 +1,5 @@
 -- Filetype detection configurations
 
--- Highlight when yanking text
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking text',
-  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
-
 -- Terraform and HCL filetypes
 local terraform = vim.api.nvim_create_augroup('terraform-filetype', { clear = true })
 

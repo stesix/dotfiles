@@ -1,22 +1,23 @@
 return {
   'folke/trouble.nvim',
-  version = '*', -- Use for stability; omit to use `main` branch for the latest features
-  event = 'VeryLazy',
-  config = function()
-    require('trouble').setup({
-      icons = false,
-    })
-
-    vim.keymap.set('n', '<leader>tt', function()
-      require('trouble').toggle()
-    end)
-
-    vim.keymap.set('n', '[t', function()
-      require('trouble').next({ skip_groups = true, jump = true })
-    end)
-
-    vim.keymap.set('n', ']t', function()
-      require('trouble').previous({ skip_groups = true, jump = true })
-    end)
-  end,
+  version = '*',
+  cmd = 'Trouble',
+  opts = {},
+  keys = {
+    { '<leader>tt', '<cmd>Trouble diagnostics toggle<cr>', desc = '[T]rouble [T]oggle diagnostics' },
+    {
+      '[t',
+      function()
+        require('trouble').prev({ skip_groups = true, jump = true })
+      end,
+      desc = 'Previous [T]rouble item',
+    },
+    {
+      ']t',
+      function()
+        require('trouble').next({ skip_groups = true, jump = true })
+      end,
+      desc = 'Next [T]rouble item',
+    },
+  },
 }

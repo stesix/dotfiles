@@ -11,9 +11,6 @@ return {
         diagnostics = {
           -- disable = { 'missing-fields' }
         },
-        runtime = {
-          version = 'Lua 5.5',
-        },
       },
     },
     root_markers = {

@@ -4,7 +4,7 @@ return {
     -- Recommended for `ask()` and `select()`.
     -- Required for `snacks` provider.
     ---@module 'snacks' <- Loads `snacks.nvim` types for configuration intellisense.
-    { 'folke/snacks.nvim', opts = { input = {}, picker = {}, terminal = {} } },
+    'folke/snacks.nvim',
   },
   config = function()
     ---@type opencode.Opts
@@ -12,9 +12,6 @@ return {
       enabled = 'snacks',
       snacks = {},
     }
-
-    -- Required for `opts.auto_reload`.
-    vim.o.autoread = true
 
     -- Leader-based mappings (aider-style organization under <leader>A)
     vim.keymap.set({ 'n', 't' }, '<leader>OO', function()

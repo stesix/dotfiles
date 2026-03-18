@@ -1,15 +1,19 @@
 return {
   'esensar/nvim-dev-container',
-  event = 'VeryLazy',
+  cmd = {
+    'DevcontainerStart',
+    'DevcontainerAttach',
+    'DevcontainerExec',
+    'DevcontainerStop',
+    'DevcontainerStopAll',
+    'DevcontainerRemoveAll',
+    'DevcontainerLogs',
+    'DevcontainerEditNearestConfig',
+  },
   dependencies = {
     'nvim-treesitter/nvim-treesitter',
   },
   config = function()
-    require('nvim-treesitter.configs').setup({
-      ensure_installed = {
-        'jsonc',
-      },
-    })
     require('devcontainer').setup({
       attach_mounts = {
         neovim_config = {

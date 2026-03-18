@@ -19,7 +19,6 @@ config/
 Handles filetype detection for:
 - Terraform/HCL files (*.tf, *.hcl, *.tfvars, etc.)
 - Jenkins files (Jenkinsfile*)
-- Yank highlight autocmd
 
 ### `lsp/keymaps.lua`
 LSP keybindings that activate on LspAttach:

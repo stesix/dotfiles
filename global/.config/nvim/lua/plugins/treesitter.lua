@@ -1,8 +1,7 @@
 return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
-  lazy = false, -- Keep false to ensure loading for Neo-tree
-  main = 'nvim-treesitter.configs', -- Lazy handles the require logic here
+  lazy = false,
   branch = 'master', -- Explicitly force the stable branch
 
   opts = {
@@ -21,6 +20,7 @@ return {
       'gitcommit',
       'diff',
       'git_rebase',
+      'jsonc',
     },
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
