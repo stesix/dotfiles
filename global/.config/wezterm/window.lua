@@ -12,6 +12,7 @@ function M.apply(config)
   config.audible_bell = 'Disabled'
   config.use_fancy_tab_bar = false
   config.show_new_tab_button_in_tab_bar = false
+  config.tab_max_width = 42
 end
 
 return M

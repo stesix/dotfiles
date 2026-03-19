@@ -32,6 +32,8 @@ local _set_process_name = function(s)
   return a:gsub('%.exe$', '')
 end
 
+local MAX_TITLE_LEN = 30
+
 local _set_title = function(process_name, base_title)
   local title
 
@@ -39,6 +41,10 @@ local _set_title = function(process_name, base_title)
     title = process_name
   else
     title = base_title
+  end
+
+  if #title > MAX_TITLE_LEN then
+    title = title:sub(1, MAX_TITLE_LEN - 1) .. '…'
   end
 
   return title
@@ -92,10 +98,13 @@ M.setup = function()
     end
 
     -- Left semi-circle
-    _push(__cells__, cs_colors.background, left_bg, { Intensity = 'Bold' }, GLYPH_SEMI_CIRCLE_LEFT)
+    _push(__cells__, cs_colors.background, right_bg, { Intensity = 'Bold' }, GLYPH_SEMI_CIRCLE_LEFT)
+
+    -- Tab number (leftmost so it survives clipping)
+    _push(__cells__, right_bg, right_fg, { Intensity = 'Bold' }, tab.tab_index + 1 .. '|')
 
     -- Title
-    _push(__cells__, left_bg, left_fg, { Intensity = 'Bold' }, title .. ' ')
+    _push(__cells__, left_bg, left_fg, { Intensity = 'Bold' }, ' ' .. title .. ' ')
 
     -- Unseen output alert
     if has_unseen_output then
@@ -104,17 +113,8 @@ M.setup = function()
       _push(__cells__, left_bg, '#f2cdcd', { Intensity = 'Bold' }, '  ')
     end
 
-    -- Right padding
-    _push(__cells__, right_bg, right_fg, { Intensity = 'Bold' }, '|' .. tab.tab_index + 1)
-
     -- Right semi-circle
-    _push(
-      __cells__,
-      'rgba(0, 0, 0, 0.4)',
-      right_bg,
-      { Intensity = 'Bold' },
-      GLYPH_SEMI_CIRCLE_RIGHT
-    )
+    _push(__cells__, 'rgba(0, 0, 0, 0.4)', left_bg, { Intensity = 'Bold' }, GLYPH_SEMI_CIRCLE_RIGHT)
 
     return __cells__
   end)
