@@ -93,7 +93,7 @@ local function retrieve_workspace_data(window)
         pixel_width = pane_info.pixel_width,
         pixel_height = pane_info.pixel_height,
         cwd = tostring(pane_info.pane:get_current_working_dir()),
-        tty = tostring(pane_info.pane:get_foreground_process_name()),
+        tty = pane_info.pane:get_foreground_process_name() or nil,
       })
     end
 
@@ -208,7 +208,7 @@ local function recreate_workspace(window, workspace_data)
       -- Restore TTY for Neovim on Linux
       -- NOTE: cwd is handled differently on windows. maybe extend functionality for windows later
       -- This could probably be handled better in general
-      if target_triple ~= 'x86_64-pc-windows-msvc' then
+      if target_triple ~= 'x86_64-pc-windows-msvc' and pane_data.tty then
         if pane_data.tty:sub(-#'/bin/nvim') == '/bin/nvim' then
           new_pane:send_text(pane_data.tty .. ' .' .. '\n')
         else
@@ -274,15 +274,6 @@ function session_manager.restore_state(window)
       4000
     )
   end
-end
-
---- Allows to select which workspace to load
-function session_manager.load_state(window)
-  -- TODO: Implement
-  -- Placeholder for user selection logic
-  -- ...
-  -- TODO: Call the function recreate_workspace(workspace_data) to recreate the workspace
-  -- Placeholder for recreation logic...
 end
 
 --- Orchestrator function to save the current workspace state.
