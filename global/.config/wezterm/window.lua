@@ -4,7 +4,7 @@ local is_osx = wezterm.target_triple == 'aarch64-apple-darwin'
 
 function M.apply(config)
   if is_osx then
-    config.window_decorations = 'RESIZE'
+    config.window_decorations = 'RESIZE | INTEGRATED_BUTTONS'
     config.window_background_opacity = 0.85
     config.macos_window_background_blur = 5
   end
