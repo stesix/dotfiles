@@ -5,11 +5,13 @@ local M = {}
 function M.apply(config)
   config.hyperlink_rules = wezterm.default_hyperlink_rules()
 
-  -- https://jira.de.deloitte.com/browse/$ticket_id
-  table.insert(config.hyperlink_rules, {
-    regex = [[(AH-\d{3,4})]],
-    format = 'https://jira.de.deloitte.com/browse/$1',
-  })
+  local jira_url = os.getenv('WEZTERM_JIRA_URL')
+  if jira_url then
+    table.insert(config.hyperlink_rules, {
+      regex = [[(AH-\d{3,4})]],
+      format = jira_url .. '/browse/$1',
+    })
+  end
 
   table.insert(config.hyperlink_rules, {
     regex = '\\bfile://\\S*\\b',
