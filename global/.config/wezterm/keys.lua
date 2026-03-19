@@ -14,7 +14,7 @@ function M.apply(config)
     { key = ' ', mods = 'LEADER', action = act.ActivateTabRelative(1) },
     {
       key = '%',
-      mods = 'CTRL|SHIFT|ALT',
+      mods = 'CTRL|SHIFT',
       action = wezterm.action.SplitHorizontal({ domain = 'CurrentPaneDomain' }),
     },
 
@@ -41,7 +41,7 @@ function M.apply(config)
       mods = 'ALT',
       action = wezterm.action_callback(function(win, pane)
         resurrect.save_state(resurrect.workspace_state.get_workspace_state())
-        resurrect.window_state.save_window_action()
+        win:perform_action(resurrect.window_state.save_window_action(), pane)
       end),
     },
     {
