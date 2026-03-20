@@ -46,6 +46,7 @@ function stowEnvironment() {
 }
 
 stowEnvironment 'global'
+stowEnvironment 'agents'
 
 if [[ "$(uname -s)" == "Darwin" ]]; then
     stowEnvironment 'osx'
