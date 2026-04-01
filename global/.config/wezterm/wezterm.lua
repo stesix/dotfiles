@@ -44,15 +44,6 @@ require('events.tab-title').setup()
 require('events.window-resized').setup()
 require('events.open-uri').setup()
 
-local smart_splits = wezterm.plugin.require('https://github.com/mrjones2014/smart-splits.nvim')
-smart_splits.apply_to_config(config, {
-  direction_keys = { 'h', 'j', 'k', 'l' },
-  modifiers = {
-    move = 'CTRL',
-    resize = 'ALT',
-  },
-})
-
 wezterm.on('save_session', function(window)
   session_manager.save_state(window)
 end)
