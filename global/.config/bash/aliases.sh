@@ -37,3 +37,9 @@ alias mkctl='microk8s kubectl'
 alias docker-compose='docker compose'
 alias tf='terraform'
 alias stripcolors='sed "s/\x1B\[\([0-9]\{1,2\}\(;[0-9]\{1,2\}\)\?\)\?[mGK]//g"'
+
+# Git specific
+alias git_most_changed='git log --format=format: --name-only --since="1 year ago" | sort | uniq -c | sort -nr | head -30'
+alias git_who_did_it='git shortlog -sn --no-merges --since="1 year ago"'
+alias git_bug_clusters='git log -i -E --grep="fix|bug|broken" --name-only --format="" | sort | uniq -c | sort -nr | head -30'
+alias git_speed="git log --format='%ad' --date=format:'%Y-%m' | sort -nr | uniq -c"
