@@ -2,12 +2,19 @@ return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
   lazy = false,
-  branch = 'master', -- Explicitly force the stable branch
+  branch = 'main', -- master branch is archived; main tracks Neovim 0.12+
+  -- Ensure Mason (and tree-sitter-cli) is set up before this plugin runs
+  dependencies = { 'neovim/nvim-lspconfig' },
 
-  opts = {
+  config = function()
+    -- Make Mason-managed binaries (including tree-sitter-cli) visible to Neovim's
+    -- vim.system() calls, which use $PATH from the Neovim process environment.
+    local mason_bin = vim.fn.stdpath('data') .. '/mason/bin'
+    if not vim.env.PATH:find(mason_bin, 1, true) then
+      vim.env.PATH = mason_bin .. ':' .. vim.env.PATH
+    end
 
-    -- A list of parser names, or "all"
-    ensure_installed = {
+    local parsers_to_install = {
       'vimdoc',
       'javascript',
       'typescript',
@@ -20,46 +27,61 @@ return {
       'gitcommit',
       'diff',
       'git_rebase',
-      'jsonc',
-    },
+      'json',
+      'markdown',
+      'markdown_inline',
+    }
 
-    -- Install parsers synchronously (only applied to `ensure_installed`)
-    sync_install = false,
+    local function install_parsers()
+      require('nvim-treesitter').install(parsers_to_install)
+    end
 
-    -- Automatically install missing parsers when entering buffer
-    -- Recommendation: set to false if you don"t have `tree-sitter` CLI installed locally
-    auto_install = true,
+    -- mason-tool-installer fires this event when all tools are done.
+    -- If tree-sitter-cli is already installed (subsequent startups), it fires
+    -- almost immediately; if it needed installing, we wait for it.
+    vim.api.nvim_create_autocmd('User', {
+      pattern = 'MasonToolInstallComplete',
+      once = true,
+      callback = install_parsers,
+    })
 
-    indent = {
-      enable = true,
-    },
+    -- Also attempt install now in case mason-tool-installer already finished
+    -- (e.g. all tools were already up-to-date and the event already fired).
+    install_parsers()
 
-    highlight = {
-      -- `false` will disable the whole extension
-      enable = true,
+    -- Enable treesitter highlighting for all filetypes.
+    -- In nvim-treesitter main, highlighting is no longer auto-enabled;
+    -- it must be wired up via FileType autocommands (Neovim 0.12+).
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = '*',
+      callback = function(ev)
+        local ok = pcall(vim.treesitter.start, ev.buf)
+        if not ok then
+          -- No parser available for this filetype — fall back to syntax
+          vim.bo[ev.buf].syntax = 'ON'
+        end
+      end,
+    })
 
-      -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-      -- Set this to `true` if you depend on "syntax" being enabled (like for indentation).
-      -- Using this option may slow down your editor, and you may see some duplicate highlights.
-      -- Instead of true it can also be a list of languages
-      additional_vim_regex_highlighting = { 'markdown' },
-    },
-  },
-  config = function(_, opts)
-    -- Prefer git for treesitter installations
-    require('nvim-treesitter.install').prefer_git = true
+    -- Enable treesitter-based indentation (experimental)
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = '*',
+      callback = function(ev)
+        pcall(function()
+          vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end)
+      end,
+    })
 
-    -- Setup treesitter with opts (lazy.nvim handles errors gracefully)
-    require('nvim-treesitter.configs').setup(opts)
-
-    -- Add custom templ parser configuration
-    local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
-    parser_config.templ = {
+    -- Register custom templ parser
+    local parsers = require('nvim-treesitter.parsers')
+    parsers['templ'] = {
       install_info = {
         url = 'https://github.com/vrischmann/tree-sitter-templ.git',
         files = { 'src/parser.c', 'src/scanner.c' },
         branch = 'master',
       },
+      tier = 3,
     }
 
     -- Register templ filetype with treesitter

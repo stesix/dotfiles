@@ -58,6 +58,7 @@ return {
     -- Install non-LSP tools (formatters, linters) by Mason package name.
     -- mason-lspconfig handles LSP servers above via ensure_installed.
     -- Add entries here when needed, e.g. 'stylua', 'black', 'prettier'.
-    require('mason-tool-installer').setup({ ensure_installed = {} })
+    -- tree-sitter-cli is required by nvim-treesitter (main branch) to build parsers
+    require('mason-tool-installer').setup({ ensure_installed = { 'tree-sitter-cli' } })
   end,
 }
