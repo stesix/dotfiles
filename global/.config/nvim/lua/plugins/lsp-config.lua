@@ -47,7 +47,7 @@ return {
         function(server_name)
           -- Setup only explicitly configured servers
           if servers[server_name] then
-            local server = servers[server_name]
+            local server = vim.tbl_deep_extend('force', {}, servers[server_name])
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
             require('lspconfig')[server_name].setup(server)
           end
