@@ -81,9 +81,9 @@ brew "mas"
 brew "md5sha1sum"
 brew "pkgconf"
 brew "ripgrep"
+brew "television"
 brew "tlrc"
 brew "tmux"
-brew "tree-sitter"
 brew "zoxide"
 
 # VCS
@@ -124,8 +124,9 @@ brew "libsodium"
 brew "json-c"
 
 
-# Docker related
+# Containerization related
 brew "colima"
+brew "devcontainer"
 
 # Editor
 brew "neovim"
