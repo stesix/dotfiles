@@ -30,6 +30,7 @@ return {
       'json',
       'markdown',
       'markdown_inline',
+      'templ',
     }
 
     local function install_parsers()
@@ -49,9 +50,9 @@ return {
     -- (e.g. all tools were already up-to-date and the event already fired).
     install_parsers()
 
-    -- Enable treesitter highlighting for all filetypes.
-    -- In nvim-treesitter main, highlighting is no longer auto-enabled;
-    -- it must be wired up via FileType autocommands (Neovim 0.12+).
+    -- Enable treesitter highlighting and indentation for all filetypes.
+    -- In nvim-treesitter main, these are no longer auto-enabled;
+    -- they must be wired up via FileType autocommands (Neovim 0.12+).
     vim.api.nvim_create_autocmd('FileType', {
       pattern = '*',
       callback = function(ev)
@@ -59,14 +60,9 @@ return {
         if not ok then
           -- No parser available for this filetype — fall back to syntax
           vim.bo[ev.buf].syntax = 'ON'
+          return
         end
-      end,
-    })
-
-    -- Enable treesitter-based indentation (experimental)
-    vim.api.nvim_create_autocmd('FileType', {
-      pattern = '*',
-      callback = function(ev)
+        -- Enable treesitter-based indentation (experimental)
         pcall(function()
           vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         end)
