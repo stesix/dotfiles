@@ -69,18 +69,11 @@ return {
       end,
     })
 
-    -- Register custom templ parser
-    local parsers = require('nvim-treesitter.parsers')
-    parsers['templ'] = {
-      install_info = {
-        url = 'https://github.com/vrischmann/tree-sitter-templ.git',
-        files = { 'src/parser.c', 'src/scanner.c' },
-        branch = 'master',
-      },
-      tier = 3,
-    }
-
-    -- Register templ filetype with treesitter
-    vim.treesitter.language.register('templ', 'templ')
+    -- Use the hcl parser for all terraform filetypes (terraform is a superset
+    -- of HCL; a dedicated terraform parser ships with nvim-treesitter but has
+    -- no highlight queries, whereas hcl does).
+    for _, ft in ipairs({ 'terraform', 'terraform-vars', 'terraform-stack', 'terraform-deploy' }) do
+      vim.treesitter.language.register('hcl', ft)
+    end
   end,
 }
