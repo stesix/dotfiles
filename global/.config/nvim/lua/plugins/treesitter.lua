@@ -2,8 +2,7 @@ return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
   lazy = false,
-  branch = 'main', -- master branch is archived; main tracks Neovim 0.12+
-  -- Ensure Mason (and tree-sitter-cli) is set up before this plugin runs
+  branch = 'main',
   dependencies = { 'neovim/nvim-lspconfig' },
 
   config = function()
@@ -24,12 +23,14 @@ return {
       'jsdoc',
       'bash',
       'hcl',
+      'terraform',
       'gitcommit',
       'diff',
       'git_rebase',
       'json',
       'markdown',
       'markdown_inline',
+      'python',
       'templ',
     }
 
@@ -37,22 +38,12 @@ return {
       require('nvim-treesitter').install(parsers_to_install)
     end
 
-    -- mason-tool-installer fires this event when all tools are done.
-    -- If tree-sitter-cli is already installed (subsequent startups), it fires
-    -- almost immediately; if it needed installing, we wait for it.
     vim.api.nvim_create_autocmd('User', {
       pattern = 'MasonToolInstallComplete',
       once = true,
       callback = install_parsers,
     })
 
-    -- Also attempt install now in case mason-tool-installer already finished
-    -- (e.g. all tools were already up-to-date and the event already fired).
-    install_parsers()
-
-    -- Enable treesitter highlighting and indentation for all filetypes.
-    -- In nvim-treesitter main, these are no longer auto-enabled;
-    -- they must be wired up via FileType autocommands (Neovim 0.12+).
     vim.api.nvim_create_autocmd('FileType', {
       pattern = '*',
       callback = function(ev)
@@ -62,18 +53,12 @@ return {
           vim.bo[ev.buf].syntax = 'ON'
           return
         end
+
         -- Enable treesitter-based indentation (experimental)
         pcall(function()
           vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
         end)
       end,
     })
-
-    -- Use the hcl parser for all terraform filetypes (terraform is a superset
-    -- of HCL; a dedicated terraform parser ships with nvim-treesitter but has
-    -- no highlight queries, whereas hcl does).
-    for _, ft in ipairs({ 'terraform', 'terraform-vars', 'terraform-stack', 'terraform-deploy' }) do
-      vim.treesitter.language.register('hcl', ft)
-    end
   end,
 }
