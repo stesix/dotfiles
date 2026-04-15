@@ -18,7 +18,7 @@ right_format = """$all"""
 [git_branch]
 format = '[$symbol$branch]($style) '
 symbol = ''
-disabled = true
+disabled = false
 
 
 [directory]
@@ -55,50 +55,14 @@ disabled = true
 disabled = true
 
 [git_status]
-disabled = true
+disabled = false
 stashed = '^'
 
 [git_commit]
-disabled = true
+disabled = false
 
 [git_metrics]
-disabled = true
-
-# custom module for jj status
-[custom.jj]
-description = "The current jj status"
-when = true
-symbol = "𝓳𝓳 "
-command = "prompt"
-format = "$output"
-ignore_timeout = true
-shell = ["starship-jj", "--ignore-working-copy", "starship"]
-use_stdin = false
-
-[custom.git_status]
-when = "! jj --ignore-working-copy root"
-command = "starship module git_status"
-style = "" # This disables the default "(bold green)" style
-description = "Only show git_status if we're not in a jj repo"
-
-
-[custom.git_commit]
-when = "! jj --ignore-working-copy root"
-command = "starship module git_commit"
-style = ""
-description = "Only show git_commit if we're not in a jj repo"
-
-[custom.git_metrics]
-when = "! jj --ignore-working-copy root"
-command = "starship module git_metrics"
-description = "Only show git_metrics if we're not in a jj repo"
-style = ""
-
-[custom.git_branch]
-when = "! jj --ignore-working-copy root"
-command = "starship module git_branch"
-description = "Only show git_branch if we're not in a jj repo"
-style = ""
+disabled = false
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
