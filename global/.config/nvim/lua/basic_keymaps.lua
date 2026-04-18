@@ -30,6 +30,18 @@ vim.keymap.set('n', '<C-b>', '<C-b>zz', { desc = 'Page up and center' })
 
 vim.keymap.set('i', '<C-c>', '<Esc>', { desc = 'Exit insert mode' })
 
+-- Completion popup navigation (native pum)
+vim.keymap.set('i', '<Tab>', function()
+  return vim.fn.pumvisible() == 1 and '<C-n>' or '<Tab>'
+end, { expr = true, desc = 'Next completion item' })
+vim.keymap.set('i', '<S-Tab>', function()
+  return vim.fn.pumvisible() == 1 and '<C-p>' or '<S-Tab>'
+end, { expr = true, desc = 'Previous completion item' })
+vim.keymap.set('i', '<CR>', function()
+  return vim.fn.pumvisible() == 1 and '<C-y>' or '<CR>'
+end, { expr = true, desc = 'Confirm completion / newline' })
+vim.keymap.set('i', '<C-Space>', '<C-n>', { desc = 'Trigger completion' })
+
 vim.keymap.set('x', '<leader>p', [["_dP]], { desc = 'Paste without yanking' })
 
 vim.keymap.set({ 'n', 'v' }, '<leader>y', [["+y]], { desc = 'Yank to system clipboard' })
@@ -51,6 +63,10 @@ vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move line down' })
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move line up' })
 
 vim.keymap.set('n', '<leader>fn', ':e %:p:h/', { desc = '[f]ile [n]ew in current buffer path' })
+
+-- Built-in undotree (nvim 0.12+)
+vim.cmd('packadd nvim.undotree')
+vim.keymap.set('n', '<leader>u', '<cmd>Undotree<CR>', { desc = '[U]ndotree toggle' })
 
 -- Split navigation
 vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Move to left split' })

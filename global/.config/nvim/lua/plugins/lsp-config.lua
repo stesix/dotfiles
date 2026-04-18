@@ -5,7 +5,6 @@ return {
     { 'williamboman/mason.nvim', config = true },
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
-    'hrsh7th/cmp-nvim-lsp',
     { 'j-hui/fidget.nvim', opts = {} },
     {
       'folke/lazydev.nvim',
@@ -34,7 +33,6 @@ return {
 
     -- Configure LSP capabilities
     local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
     -- Setup Mason
     require('mason').setup()

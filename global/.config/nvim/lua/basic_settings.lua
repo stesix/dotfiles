@@ -72,3 +72,12 @@ vim.opt.hlsearch = true
 
 -- Automatically reload files changed outside of Neovim (required by opencode.nvim)
 vim.opt.autoread = true
+
+-- Native completion (nvim 0.12+)
+-- 'menuone' show menu even for single match, 'noinsert' don't auto-insert,
+-- 'popup' show extra info in a popup rather than preview window
+vim.opt.completeopt = 'menuone,noinsert,popup'
+-- Sources: current buf, other windows, other bufs, unloaded bufs, tags, LSP, filepath
+vim.opt.complete = '.,w,b,u,t'
+-- Auto-trigger completion from LSP and filepath sources without keypress
+vim.opt.autocomplete = true
