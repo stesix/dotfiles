@@ -8,13 +8,10 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
 
         mkdir -p "$DATA_DIR"
 
-        brew bundle -g \
-            --upgrade \
-            --cleanup \
-            --quiet
+        brew upgrade
 
         # Upgrade neovim plugins and LSP
-        nvim --headless "+Lazy update" "+MasonUpdate" "+qa"
+        nvim --headless "+Lazy update" "+MasonUpdate" "+sleep 15" "+qa"
         echo ""
 
         bmad_version="$(basename "$(curl -s https://github.com/bmad-code-org/BMAD-METHOD/releases/ | grep -o '[^"]*BMAD-METHOD/releases/tag[^"]*' | head -1)")"
